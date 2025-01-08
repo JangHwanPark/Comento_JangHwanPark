@@ -1,27 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>JangHwanPark FrontEnd Dev Portfolio</title>
+  <!-- CSS Import -->
+  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/navigation.css">
+  <link rel="stylesheet" href="styles/footer.css">
 </head>
 <body>
 <div class="container">
-    <!-- 네비게이션 -->
-    <ul class="navigation">
-        <li class="nav_list"><a href="#">ABOUT ME</a></li>
-        <li class="nav_list"><a href="#">SKILLS</a></li>
-        <li class="nav_list"><a href="#">PROJECTS</a></li>
-        <li class="nav_list"><a href="#">EXPERIENCE</a></li>
+  <!-- 네비게이션 -->
+  <nav class="navigation">
+    <ul class="nav_list">
+      <li class="nav_item"><a href="#">ABOUT ME</a></li>
+      <li class="nav_item"><a href="#">SKILLS</a></li>
+      <li class="nav_item"><a href="#">PROJECTS</a></li>
+      <li class="nav_item"><a href="#">EXPERIENCE</a></li>
     </ul>
+  </nav>
 
-    <!-- 소개 페이지 -->
-    <div class="about"></div>
-    <div class="skills"></div>
-    <div class="projects"></div>
-    <div class="experience"></div>
+  <!-- 메인 섹션 -->
+  <main class="content">
 
-    <!-- Footer 영역 -->
-    <footer></footer>
+    <!-- 자기 소개 -->
+    <div class="about section">
+      <div class="profile_img">
+        <img src="/assets/profile/p1.JPG" alt="#">
+      </div>
+      <div class="info">
+        <h3 class="profile_name">
+          페이지를 조각하는 프론트엔드 개발자 박장환 입니다.
+        </h3>
+        <div class="profile_intro">
+          웹 페이지에 숨결을 불어넣는 일을 합니다.<br/>
+          사용자와 기술이 만나는 순간의 가치를 발견하며, 더 나은 경험을 만들어가기 위해 끊임없이 도전합니다.
+          성장하는 개발자가 아닌, 세상을 연결하는 개발자가 되고자 합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 기술 스택 -->
+    <div class="skills section">
+      <h3>제가 사용할 수 있어요</h3>
+      <div class="skills_item"></div>
+    </div>
+
+    <!-- 프로젝트 -->
+    <div class="projects section">
+      <h3>제가 진행 했어요</h3>
+    </div>
+
+    <!-- 경력 사항 -->
+    <div class="experience section">
+      <h3>제 발걸음 이에요</h3>
+    </div>
+  </main>
+
+  <!-- Footer 영역 -->
+  <footer class="footer">
+    <small>© 2025 JangHwanPark. All rights reserved.</small>
+  </footer>
 </div>
 </body>
 </html>

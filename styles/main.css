@@ -1,0 +1,34 @@
+.content {
+    margin: 0 20rem;
+    /*padding-top: 70px;*/
+}
+
+.about {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about .profile_img img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.about .profile_img .info {
+    width: 200px;
+}
+
+.skills {
+
+}
+
+.projects {
+
+}
+
+.experience {
+
+}
