@@ -3,6 +3,7 @@
     /*padding-top: 70px;*/
 }
 
+/* 자기 소개 */
 .about {
     height: 100vh;
     display: flex;
@@ -21,14 +22,21 @@
     width: 200px;
 }
 
-.skills {
-
+/* 기술 스택 */
+.skills .skill_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-.projects {
-
+.skill_list .skill_item > svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
 }
 
-.experience {
-
+.skills, .projects, .experience {
+    text-align: center;
 }
