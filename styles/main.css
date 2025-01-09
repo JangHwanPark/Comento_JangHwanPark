@@ -6,6 +6,7 @@
 /* 자기 소개 */
 .about {
     height: 100vh;
+    margin: 0 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,13 +14,25 @@
 }
 
 .about .profile_img img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
 }
 
 .about .profile_img .info {
     width: 200px;
+}
+
+.about .profile_etc {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #fff;
+}
+
+.about .profile_etc a svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
 /* 기술 스택 */
@@ -29,6 +42,31 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+}
+
+/* 프로젝트 */
+
+/* 경력 사항 */
+.experience {
+
+}
+
+.projects-list li h3:hover,
+.experience-list li h3:hover {
+    font-size: 26px;
+    transition: font-size 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+/* ETC */
+.skills, .projects, .experience {
+    gap: 3rem;
+}
+
+.skills, .projects, .experience {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .skill_list .skill_item > svg {
