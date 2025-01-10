@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 레이아웃 예제</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-right: 1px solid #ddd;
+        }
+        main {
+            flex: 2;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        aside {
+            flex: 1;
+            padding: 20px;
+            background-color: #ddd;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .container {
+            display: flex;
+        }
+        .container > div {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>HTML 레이아웃 예제</h1>
+</header>
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="#">메뉴 1</a></li>
+            <li><a href="#">메뉴 2</a></li>
+            <li><a href="#">메뉴 3</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>메인 콘텐츠</h2>
+        <p>여기에 메인 콘텐츠가 표시됩니다.</p>
+    </main>
+    <aside>
+        <h3>사이드바</h3>
+        <p>여기에 추가 정보나 광고를 표시할 수 있습니다.</p>
+    </aside>
+</div>
+<footer>
+    <p>Copyright © 2025. 모든 권리 보유.</p>
+</footer>
+</body>
+</html>
