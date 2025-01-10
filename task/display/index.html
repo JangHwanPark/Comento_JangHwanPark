@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block과 Inline 차이점</title>
+  <style>
+    .block {
+      background-color: lightblue;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid blue;
+      width: 300px; /* 블록 요소는 너비를 설정할 수 있습니다. */
+      height: 100px; /* 블록 요소는 높이를 설정할 수 있습니다. */
+    }
+    .inline {
+      background-color: lightcoral;
+      margin: 5px;
+      padding: 5px;
+      border: 1px solid red;
+      width: 300px; /* 무시됨: 인라인 요소는 너비를 설정할 수 없습니다. */
+      height: 100px; /* 무시됨: 인라인 요소는 높이를 설정할 수 없습니다. */
+    }
+    .inline-block {
+      display: inline-block;
+      background-color: lightgreen;
+      margin: 5px;
+      padding: 5px;
+      border: 1px solid green;
+      width: 300px; /* 인라인-블록 요소는 너비를 설정할 수 있습니다. */
+      height: 100px; /* 인라인-블록 요소는 높이를 설정할 수 있습니다. */
+    }
+  </style>
+</head>
+<body>
+<h1>Block과 Inline 요소 차이</h1>
+
+<h2>Block 요소</h2>
+<div class="block">이것은 block 요소입니다. 너비와 높이를 설정할 수 있습니다.</div>
+
+<h2>Inline 요소</h2>
+<p>이 문장 안에 <span class="inline">이것은 inline 요소입니다.</span> (너비와 높이를 설정할 수 없습니다.)</p>
+
+<h2>Inline-Block 요소</h2>
+<p>
+  <span class="inline-block">이것은 inline-block 요소입니다.</span>
+  <br>(인라인처럼 나란히 배치되지만, 너비와 높이를 설정할 수 있습니다.)
+</p>
+</body>
+</html>
