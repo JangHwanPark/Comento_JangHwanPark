@@ -6,6 +6,12 @@ body {
     box-sizing: border-box;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
 .container {
     width: 30rem;
     height: 100%;
@@ -35,4 +41,29 @@ body {
     height: 100%;
     margin-top: 1rem;
     border: 1px solid black;
+}
+
+.btn_keypad {
+    margin: 1rem;
+}
+
+.btn_keypad .btn_content,
+.btn_keypad button {
+    width: 100%;
+}
+
+.btn_keypad .btn_content, button {
+    height: 50px;
+}
+
+.btn_container .btn_keypad:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.btn_container .btn_keypad:last-child {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
 }
