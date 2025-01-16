@@ -1,0 +1,131 @@
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #eae8fe;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* 자판기 */
+.container {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.vending_machine {
+    padding: 1rem;
+    height: 550px;
+    display: flex;
+    border-radius: 10px;
+    background: #E7263B;
+}
+
+/* 상품 */
+.product_container {
+    width: 380px;
+    height: 450px;
+    padding: 20px;
+    background: #4b4b4b;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.product_container .product_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.product_container .product_list .product {
+    border-bottom: 1px solid rgba(255,255,255, 0.2);
+}
+
+.product_container .product_list .product p {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.product_container .product_list .product .product_name {
+    margin-bottom: 5px;
+}
+
+.product_container .product_list .product .btn_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_container .product_list .product .btn_wrapper button {
+    width: 35px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #fff;
+    border: 1px solid rgba(0,0,0, 0.2);
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.product_container .product_list .product .btn_wrapper button:hover {
+    background: #E7263B;
+}
+
+/* 동전 */
+.coin_container {
+    width: 120px;
+    height: 450px;
+    padding: 20px;
+}
+
+.coin_container .coin_list {
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+}
+
+.coin_container .coin_list .coin button {
+    width: 100%;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #333;
+    box-shadow: inset 0 0 10px #000;
+    color: #fff;
+    border: 1px solid rgba(0,0,0, 0.2);
+    cursor: pointer;
+}
+
+.coin_container .display {
+    margin-bottom: 6rem;
+    text-align: center;
+    background: #333;
+    color: #fff;
+}
+
+/* 음료 나오는곳 */
+.coin_container .output {
+    height: 70px;
+    padding: 20px;
+    background: #333;
+    box-shadow: inset 0 0 10px #000;
+    border: 1px solid rgba(0,0,0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}

@@ -3,8 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>자판기</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- 자판기 -->
+<div class="container">
+  <main class="vending_machine">
+    <!-- 상품 -->
+    <section class="product_container">
+      <ul class="product_list"></ul>
+    </section>
 
+    <!-- 동전 -->
+    <section class="coin_container">
+      <!-- 동전 입력 -->
+      <ul class="coin_list"></ul>
+
+      <!-- 잔액 -->
+      <div class="display">
+        <p><span>0</span>원</p>
+      </div>
+
+      <!-- 음료 나오는곳 -->
+      <article class="output">
+        <p></p>
+      </article>
+    </section>
+  </main>
+</div>
+
+<script src="js/coin_element.js"></script>
+<script src="js/products_element.js"></script>
 </body>
 </html>
