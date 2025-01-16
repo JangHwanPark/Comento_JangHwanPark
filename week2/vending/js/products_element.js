@@ -49,9 +49,10 @@ const PRODUCT_DATA = [
     name: '바나나우유',
     price: 800,
   },
-]
+];
 
 const PRODUCT_LIST = document.querySelector('.product_list');
+const COIN = document.querySelector('.display_price');
 
 PRODUCT_DATA.forEach(item => {
   const PRODUCT_ITEM = document.createElement('li');
@@ -69,9 +70,22 @@ PRODUCT_DATA.forEach(item => {
   PRODUCT_BTN.dataset.price = item.price;
   PRODUCT_BTN.dataset.id = item.id;
 
+  // 상품 구매 버튼 클릭 이벤트
+  PRODUCT_BTN.addEventListener('click', (e) => {
+    const coin = +COIN.textContent;
+    const price = +e.target.dataset.price;
+    
+    if (coin >= price) {
+      COIN.textContent = (coin - price).toString();
+      alert(`${item.name} 구매 완료!`);
+    } else if (coin <= price) {
+      alert('잔액이 부족합니다.');
+    }
+  });
+
   PRODUCT_ITEM.appendChild(PRODUCT_NAME);
   PRODUCT_ITEM.appendChild(BTN_WRAPPER);
   BTN_WRAPPER.appendChild(PRODUCT_PRICE);
   BTN_WRAPPER.appendChild(PRODUCT_BTN);
   PRODUCT_LIST.appendChild(PRODUCT_ITEM);
-})
+});
