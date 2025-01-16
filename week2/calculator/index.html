@@ -9,72 +9,18 @@
 <div class="container">
   <main class="calculator">
     <section class="screen">
-      <p>0</p>
+      <p class="calculator_value">0</p>
     </section>
 
     <section class="btn_container">
-      <ul class="btn_keypad">
-        <li class="btn_content">
-          <button>clear</button>
-        </li>
-        <li class="btn_content">
-          <button>delete</button>
-        </li>
-      </ul>
-      <ul class="btn_keypad">
-        <li class="btn_content">
-          <button>7</button>
-        </li>
-        <li class="btn_content">
-          <button>8</button>
-        </li>
-        <li class="btn_content">
-          <button>9</button>
-        </li>
-        <li class="btn_content">
-          <button>*</button>
-        </li>
-        <li class="btn_content">
-          <button>4</button>
-        </li>
-        <li class="btn_content">
-          <button>5</button>
-        </li>
-        <li class="btn_content">
-          <button>6</button>
-        </li>
-        <li class="btn_content">
-          <button>-</button>
-        </li>
-        <li class="btn_content">
-          <button>1</button>
-        </li>
-        <li class="btn_content">
-          <button>2</button>
-        </li>
-        <li class="btn_content">
-          <button>3</button>
-        </li>
-        <li class="btn_content">
-          <button>+</button>
-        </li>
-        <li class="btn_content">
-          <button>+/-</button>
-        </li>
-        <li class="btn_content">
-          <button>0</button>
-        </li>
-        <li class="btn_content">
-          <button>.</button>
-        </li>
-        <li class="btn_content">
-          <button>=</button>
-        </li>
-      </ul>
+      <!-- 계산기 옵션 -->
+      <ul class="btn_keypad option"></ul>
+      <!-- 계산기 키패드 -->
+      <ul class="btn_keypad operation"></ul>
     </section>
   </main>
 </div>
 <!-- JS -->
-<script src="calculator.js"></script>
+<script type="module" src="calculator.js"></script>
 </body>
 </html>
