@@ -36,9 +36,20 @@ ul {
 }
 
 .calculator .screen {
-    width: 26rem;
+    width: 27rem;
     height: 150px;
     margin: 0 auto;
+}
+
+.calculator .screen p {
+    width: 23rem;
+    height: 50px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid rgba(0,0,0, 0.2);
+    text-align: right;
+    font-size: 3rem;
+    color: white;
 }
 
 .calculator .btn_container {
