@@ -14,7 +14,7 @@ export const rendering_element = (keypadData, value, element, calculatorNumber) 
       KEYPAD_BTN.addEventListener('click', () => {
         if (value.textContent === '0') {
           value.textContent = KEYPAD_BTN.textContent;
-          calculatorNumber = [KEYPAD_BTN.textContent];
+          calculatorNumber.push(KEYPAD_BTN.textContent);
         } else {
           value.textContent += KEYPAD_BTN.textContent;
           calculatorNumber.push(KEYPAD_BTN.textContent);

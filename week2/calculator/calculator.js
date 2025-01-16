@@ -20,7 +20,7 @@ const DELETE_BTN = document.querySelector('.delete_btn');
 
 CLEAR_BTN.addEventListener('click', () => {
   CALCULATOR_VALUE.textContent = '0';
-  calculatorNumber = [];
+  calculatorNumber.length = 0;
 });
 
 DELETE_BTN.addEventListener('click', () => {
@@ -35,6 +35,4 @@ EQUALS_BTN.addEventListener('click', (e) => {
   if (value === '' || value === null || value === undefined) {
     alert("값을 입력해주세요");
   }
-
-  CALCULATOR_VALUE.textContent = '';
 });
