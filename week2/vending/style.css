@@ -113,10 +113,36 @@ ul, li {
 }
 
 .coin_container .display {
-    margin-bottom: 6rem;
     text-align: center;
     background: #333;
     color: #fff;
+}
+
+.coin_container .return_container {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+    text-align: center;
+}
+
+.coin_container .return_container .return_coin {
+    width: 90px;
+    height: 20px;
+    margin: 0;
+    padding: 5px;
+    background: #333;
+    color: #fff;
+    align-items: center;
+}
+
+.coin_container .return_container .return_btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
 }
 
 /* 음료 나오는곳 */
