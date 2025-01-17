@@ -1,7 +1,6 @@
 import {CONTENT, GAUGE, MAIN, NAVIGATION} from '../data/dom.js';
 
 // 배터리 감소
-
 export const reduce_percentage = (percentage) => {
   if (percentage > 0) {
     percentage -= 1;
