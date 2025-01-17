@@ -2,28 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>알람</title>
+  <title>태블릿 PC</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contents.css">
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- 컨테이너 -->
 <div class="container">
-  <!-- 배터리 -->
-  <nav>
-    <div class="battery">
-      <div class="icon"></div>
-      <div class="percentage">100%</div>
-    </div>
-  </nav>
+  <div class="content">
+    <!-- 네비게이션 -->
+    <nav class="navigation">
+      <!-- 시계 -->
+      <ul class="clock">
+        <li class="item">
+          <p class="date"></p>
+        </li>
+      </ul>
 
-  <!-- 메인 컨텐츠 -->
-  <main class="content">
-    <!-- 시계 -->
-    <section class="clock"></section>
-    
-    <!-- 알람 -->
-    <section class="alarm">
-      <form action="" class="form"></form>
-    </section>
-  </main>
+      <!-- 배터리 -->
+      <ul class="battery">
+        <li class="item">
+          <span class="gauge">100</span>
+          <span>%</span>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main">
+      <!-- 알람 -->
+      <section class="alarm">
+        <form class="form">
+          <h1>알람 추가</h1>
+          <div class="time">
+            <select name="" id="" class="amPm">
+              <option value="am">오전</option>
+              <option value="pm">오후</option>
+            </select>
+            <select class="hour"></select>
+            <select class="minute"></select>
+          </div>
+          <button type="submit">추가</button>
+        </form>
+      </section>
+    </main>
+  </div>
 </div>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
