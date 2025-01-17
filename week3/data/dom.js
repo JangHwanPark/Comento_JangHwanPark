@@ -8,3 +8,6 @@ export const GAUGE = document.querySelector('.gauge');
 
 // form
 export const FORM = document.querySelector('.form');
+
+// alarm list
+export const ALARM_LIST = document.querySelector('.add_alarm .list');
