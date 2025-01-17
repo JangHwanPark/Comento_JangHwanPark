@@ -1,3 +1,8 @@
+// content
+export const CONTENT = document.querySelector('.content');
+export const MAIN = document.querySelector('.main');
+export const NAVIGATION = document.querySelector('.navigation');
+
 // time
 export const CLOCK = document.querySelector('.clock .item .date');
 export const HOUR = document.querySelector('.hour');
