@@ -126,3 +126,8 @@
     position: absolute;
     right: -75%;
 }
+
+/* 충전 중이면 배경색 변경 */
+.charging {
+    background-color: #90EE90;
+}
