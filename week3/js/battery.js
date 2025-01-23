@@ -54,7 +54,7 @@ const startCharging = () => {
 
     chargeInterval = setInterval(() => {
       if (percentage < 100) {
-        percentage += 1;
+        percentage += 2;
         GAUGE.textContent = percentage.toString();
       }
     }, 1000);
