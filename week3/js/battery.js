@@ -77,14 +77,18 @@ export const initCharger = () => {
 
   charger.addEventListener("mousedown", (e) => {
     isDragging = true;
-    offsetX = e.clientX - charger.getBoundingClientRect().left;
-    offsetY = e.clientY - charger.getBoundingClientRect().top;
+
+    const rect = charger.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
     charger.style.cursor = "grabbing";
   });
 
   document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
 
+    // 뷰포트 기준으로 충전기 위치 설정
+    charger.style.position = "absolute";
     charger.style.left = `${e.clientX - offsetX}px`;
     charger.style.top = `${e.clientY - offsetY}px`;
 
