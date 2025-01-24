@@ -10,11 +10,10 @@ let percentage = parseInt(GAUGE.textContent);
 initCharger();
 
 // 배터리 감소 및 방전
-console.log("percentage app: ", percentage);
 setInterval(() => {
   percentage = reduce_percentage(percentage);
   died_battery(percentage);
-}, 10000);
+}, 1000);
 
 // 시계 화면
 show_time();
