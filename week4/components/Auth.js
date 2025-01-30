@@ -1,4 +1,4 @@
-import {loginForm, registerForm} from "../data/dom.js";
+// import {loginForm, registerForm} from "../data/dom.js";
 import {REGISTER_DATA} from "../data/form.js";
 import {createElement} from "../utils/createElement.js"; // 폼 데이터 임포트
 
@@ -43,7 +43,7 @@ export const createForm = (element, data) => {
   element.appendChild(fragment);
 
   // ✅로그인, 회원가입 버튼 추가
-  const btnText = element === loginForm ? "로그인" : "회원가입";
+  const btnText = element?.classList.contains("login") ? "로그인" : "회원가입";
   const submitButton = createElement("button", {
     class: "submit"}, btnText);
   element.appendChild(submitButton);
@@ -55,14 +55,15 @@ export const createForm = (element, data) => {
 };
 
 // 인증번호 입력 필드와 인증 버튼을 동적으로 생성
-export const createAuthElement = () => {
-  if (!registerForm) {
+export const createAuthElement = (element) => {
+  if (!element) {
     console.error("회원가입 폼이 존재하지 않아 인증 필드를 추가할 수 없습니다.");
     return;
   }
 
   // 인증번호 필드 정보 가져오기
-  const authField = REGISTER_DATA.find(field => field.name === "authentication");
+  const authField = REGISTER_DATA.find(field =>
+      field.name === "authentication");
   if (!authField) return;
 
   // 기존 인증번호 필드 제거 (중복 방지)
@@ -101,8 +102,8 @@ export const createAuthElement = () => {
   authWrapper.appendChild(authButton);
 
   // 인증번호 필드는 회원가입 폼에서 회원가입 버튼 위에 삽입
-  const submitBtn = registerForm.querySelector(".submit");
-  if (submitBtn) registerForm.insertBefore(authWrapper, submitBtn);
+  const submitBtn = element.querySelector(".submit");
+  if (submitBtn) element.insertBefore(authWrapper, submitBtn);
   else console.error("회원가입 버튼을 찾을 수 없어 인증 필드를 추가할 수 없습니다.");
 };
 
