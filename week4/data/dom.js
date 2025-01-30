@@ -1,11 +1,10 @@
 // 둠 조작
-export const registerForm = document.querySelector(".register");
-export const loginForm = document.querySelector(".login");
-export const todoForm = document.querySelector(".todo");
+export let registerForm, loginForm, todoForm;
 
-// input 요소
-export const inputWrapper = document.querySelectorAll(".input_wrapper");
+document.addEventListener("DOMContentLoaded", () => {
+  registerForm = document.querySelector(".register");
+  loginForm = document.querySelector(".login");
+  todoForm = document.querySelector(".todo");
 
-// 버튼
-export const submitBtn = document.querySelector(".submit");
-export const authBtn = document.querySelector(".auth_btn");
+  console.log("DOM 로드 완료:", { registerForm, loginForm, todoForm });
+});
