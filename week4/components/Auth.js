@@ -1,7 +1,8 @@
-import { registerForm } from "../data/dom.js";
-import { REGISTER_DATA } from "../data/form.js"; // 폼 데이터 임포트
+import {registerForm} from "../data/dom.js";
+import { REGISTER_DATA } from "../data/form.js";
+import {createElement} from "../utils/createElement.js"; // 폼 데이터 임포트
 
-const createRegisterForm = () => {
+export const createRegisterForm = () => {
   // DOM 조작 최소화를 위한 Fragment
   const fragment = document.createDocumentFragment();
 
@@ -9,48 +10,22 @@ const createRegisterForm = () => {
     // 인증번호 필드는 따로 처리 (createAuthElement에서)
     if (field.name === "authentication") return;
 
-    // div.wrapper 생성
-    const inputWrapper = document.createElement("div");
-    inputWrapper.classList.add("input_wrapper");
+    // ✅ div.wrapper, label, input 생성
+    const inputWrapper = createElement("div", {
+      class: "input_wrapper",
+    });
 
-    // label 생성
-    const labelElement = document.createElement("label");
-    labelElement.setAttribute("for", field.name);
-    labelElement.textContent = field.label;
+    const labelElement = createElement("label", {
+      for: field.name
+    }, field.label);
 
-    let inputElement;
-
-    if (field.type === "radio") {
-      // 성별 선택 (radio 버튼 여러 개 추가)
-      inputElement = document.createElement("div");
-
-      field.options.forEach(option => {
-        const radioInput = document.createElement("input");
-        radioInput.type = "radio";
-        radioInput.name = field.name;
-        radioInput.value = option.value;
-        radioInput.id = `${field.name}_${option.value}`;
-
-        const radioLabel = document.createElement("label");
-        radioLabel.setAttribute("for", radioInput.id);
-        radioLabel.textContent = option.label;
-
-        inputElement.appendChild(radioInput);
-        inputElement.appendChild(radioLabel);
-      });
-    } else {
-      // 일반 input 생성
-      inputElement = document.createElement("input");
-      inputElement.type = field.type;
-      inputElement.name = field.name;
-      inputElement.id = field.name;
-      inputElement.placeholder = field.placeholder || "";
-
-      if (field.required) inputElement.required = true;
-      if (field.minLength) inputElement.minLength = field.minLength;
-      if (field.maxLength) inputElement.maxLength = field.maxLength;
-      if (field.pattern) inputElement.pattern = field.pattern;
-    }
+    const inputElement = createElement("input", {
+      type: field.type,
+      name: field.name,
+      id: field.id,
+      placeholder: field.placeholder,
+      required: field.required || false,
+    });
 
     // 요소 추가
     inputWrapper.appendChild(labelElement);
@@ -62,7 +37,7 @@ const createRegisterForm = () => {
 };
 
 // 인증번호 입력 필드와 인증 버튼을 동적으로 생성
-const createAuthElement = () => {
+export const createAuthElement = () => {
   // 인증번호 필드 정보 가져오기
   const authField = REGISTER_DATA.find(field => field.name === "authentication");
   if (!authField) return;
@@ -70,38 +45,39 @@ const createAuthElement = () => {
   // 기존 인증번호 필드 제거 (중복 방지)
   document.querySelector(".authentication_wrapper")?.remove();
 
-  // 새로운 div 태그 생성 및 클래스 추가
-  const authWrapper = document.createElement("div");
-  authWrapper.classList.add("input_wrapper", "authentication_wrapper");
+  // div, label, input, button 태그 생성
+  const authWrapper = createElement("div", {
+    class: "input_wrapper authentication_wrapper"
+  });
 
-  // label 생성
-  const labelElement = document.createElement("label");
-  labelElement.setAttribute("for", authField.name);
-  labelElement.textContent = authField.label;
+  const labelElement = createElement("label", {
+    for: authField.name
+  }, authField.label);
 
-  // input 생성
-  const inputElement = document.createElement("input");
-  inputElement.type = authField.type;
-  inputElement.name = authField.name;
-  inputElement.id = authField.name;
-  inputElement.placeholder = authField.placeholder || "";
-  inputElement.required = authField.required || false;
+  const inputElement = createElement("input", {
+    type: authField.type,
+    name: authField.name,
+    id: authField.name,
+    placeholder: authField.placeholder || "",
+    required: authField.required || false,
+  });
 
-  // 버튼 생성
-  const authButton = document.createElement("button");
-  authButton.type = "button";
-  authButton.textContent = "인증하기";
+  const authButton = createElement("button", {
+    class: "auth_btn"
+  }, "인증하기");
+
+  // 이벤트 등록
+  authButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("authBtn");
+    authButton.classList.toggle("auth_btn");
+  })
 
   // 요소 추가
   authWrapper.appendChild(labelElement);
   authWrapper.appendChild(inputElement);
   authWrapper.appendChild(authButton);
-
   registerForm.appendChild(authWrapper);
 };
 
-// DOM이 완전히 로드된 후 실행
-window.addEventListener("DOMContentLoaded", () => {
-  createRegisterForm();  // 기본 입력 필드 생성
-  createAuthElement();   // 인증번호 필드 생성
-});
+

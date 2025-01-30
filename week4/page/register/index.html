@@ -7,9 +7,14 @@
 </head>
 <body>
 <main class="container">
-  <form action="" class="register">
+  <h2>회원가입</h2>
+  <span>계정이 있으신가요 ? <a href="../../index.html">로그인</a></span>
+  <form action="" class="register" novalidate>
+    <button class="submit">로그인</button>
   </form>
 </main>
-<script type="module" src="../../components/Auth.js"></script>
+<script type="module" src="../../app.js"></script>
+<script type="module" src="../../utils/validation.js"></script>
+<script type="module" src="../../event/useSubmit.js" defer></script>
 </body>
 </html>

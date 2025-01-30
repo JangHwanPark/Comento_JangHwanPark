@@ -84,27 +84,5 @@ export const REGISTER_DATA = [
     type: "text",
     placeholder: "인증 번호를 입력하세요",
     required: true
-  },
-  {
-    label: "생년월일",
-    name: "birthdate",
-    type: "date",
-    required: true
-  },
-  {
-    label: "성별",
-    name: "gender",
-    type: "radio",
-    options: [
-      { label: "남성", value: "male" },
-      { label: "여성", value: "female" },
-    ],
-    required: true
-  },
-  {
-    label: "주소",
-    name: "address",
-    type: "text",
-    placeholder: "도로명 주소를 입력하세요"
   }
 ];
