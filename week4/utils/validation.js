@@ -48,10 +48,16 @@ export const isValidPhone = (value) => {
   return phoneRegex.test(value);
 };
 
-// ✅ 테스트 코드
-console.log(isEmpty("   ")); // true
-console.log(isValidLength("user1234", 4, 16)); // true (아이디 길이 검사)
-console.log(isValidLength("password123!", 8, 20)); // true (비밀번호 길이 검사)
-console.log(hasInvalidCharacters("DROP TABLE users;")); // true (SQL 인젝션 방지)
-console.log(isValidPhone("01012345678")); // true
-console.log(isValidPhone("010-1234-5678")); // false (허용되지 않음)
+/**
+ * 생성된 인증번호와 입력한 인증번호 일치 여부 검사
+ * @param {string} userInput - 사용자가 입력한 인증번호
+ * @param {string} generatedCode - 생성된 인증번호
+ * @returns {boolean} - 인증번호가 일치하면 true, 아니면 false
+ */
+export const isAuthCodeValid = (userInput, generatedCode) => {
+  if (!userInput || !generatedCode) {
+    console.error("⚠️ 인증번호가 제공되지 않았습니다.");
+    return false;
+  }
+  return userInput.trim() === generatedCode.trim();
+}
