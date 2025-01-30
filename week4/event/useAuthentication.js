@@ -1,4 +1,4 @@
-export const useSubmit = (button) => {
+export const useAuthentication = (button) => {
   if (!button) {
     console.error("⚠️ 버튼 요소가 존재하지 않음");
     return;
@@ -6,6 +6,7 @@ export const useSubmit = (button) => {
 
   button.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("submit");
+    console.log("authBtn");
+    button.classList.toggle("auth_btn");
   });
 }

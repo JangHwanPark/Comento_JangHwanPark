@@ -1,6 +1,9 @@
 import {REGISTER_DATA} from "../data/form.js";
-import {createElement} from "../utils/createElement.js"; // 폼 데이터 임포트
+import {createElement} from "../utils/createElement.js";
+import {useSubmit} from "../event/useSubmit.js";
+import {useAuthentication} from "../event/useAuthentication.js";
 
+// 로그인 회원가입 폼 동적으로 생성
 export const createForm = (element, data) => {
   if (!element) {
     console.error("폼 요소가 존재하지 않음");
@@ -38,19 +41,16 @@ export const createForm = (element, data) => {
     fragment.appendChild(inputWrapper);
   });
 
-  // ✅입력 필드 추가
-  element.appendChild(fragment);
-
-  // ✅로그인, 회원가입 버튼 추가
+  // ✅로그인, 회원가입(입력 필드) 버튼 추가
   const btnText = element?.classList.contains("login") ? "로그인" : "회원가입";
   const submitButton = createElement("button", {
     class: "submit"}, btnText);
-  element.appendChild(submitButton);
 
-  submitButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("submit");
-  })
+  fragment.appendChild(submitButton);
+  element.appendChild(fragment);
+
+  // 이벤트 등록
+  useSubmit(submitButton);
 };
 
 // 인증번호 입력 필드와 인증 버튼을 동적으로 생성
@@ -85,15 +85,10 @@ export const createAuthElement = (element) => {
     required: authField.required || false,
   });
 
+  // 버튼 생성 및 인증번호 클릭 이벤트 등록
   const authButton = createElement("button", {
     class: "auth_btn"}, "인증하기");
-
-  // 이벤트 등록
-  authButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("authBtn");
-    authButton.classList.toggle("auth_btn");
-  })
+  useAuthentication(authButton)
 
   // 요소 추가
   authWrapper.appendChild(labelElement);
@@ -106,4 +101,7 @@ export const createAuthElement = (element) => {
   else console.error("회원가입 버튼을 찾을 수 없어 인증 필드를 추가할 수 없습니다.");
 };
 
+// 할일 목록 폼 동적으로 생성
+export const createTodoForm = () => {
 
+}

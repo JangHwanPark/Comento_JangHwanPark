@@ -1,5 +1,5 @@
 // DOM이 완전히 로드된 후 실행
-import {createAuthElement, createForm} from "./components/Auth.js";
+import {createAuthElement, createForm} from "./components/Form.js";
 import {LOGIN_DATA, REGISTER_DATA} from "./data/form.js";
 
 window.addEventListener("DOMContentLoaded", () => {
