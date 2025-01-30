@@ -1,4 +1,5 @@
 import { hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, isValidPhone } from "../utils/validation.js";
+import {showError} from "../utils/showError.js";
 
 export const useSubmit = (button, fields) => {
   if (!button || !fields || fields.length === 0) {
@@ -17,7 +18,6 @@ export const useSubmit = (button, fields) => {
 
       // 기존 경고 메시지 삭제
       field.querySelector(".error-message")?.remove();
-      console.log(`🔍 필드 확인 - label: "${label}", value: "${value}"`);
       let errorMessage = "";
 
       switch (label) {
@@ -60,11 +60,7 @@ export const useSubmit = (button, fields) => {
       // ⚠️ 오류 메시지가 있으면 p 태그 추가
       if (errorMessage) {
         isValid = false;
-        const errorWrapper = document.querySelector(".error");
-        const errorTag = document.createElement("p");
-        errorTag.classList.add("error_message");
-        errorTag.textContent = `⚠️ ${errorMessage}`;
-        errorWrapper.appendChild(errorTag);
+        showError(field, errorMessage);
       }
     });
 
