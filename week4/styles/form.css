@@ -1,0 +1,96 @@
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.layout {
+    width: 450px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    border: 1px solid #e1e3e5;
+    border-radius: 12px;
+}
+
+/* content */
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+.intro {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login, .register {
+    width: 100%;
+}
+
+/* 계정이 없거나 있는경우 */
+.move_auth {
+    margin-top: 2rem;
+}
+
+.move_login {
+    margin-bottom: 2rem;
+}
+
+.move_auth span,
+.move_login span{
+    font-size: 14px;
+}
+
+.move_auth a,
+.move_login a{
+    color: #7ac142;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* input */
+.input_wrapper input {
+    width: 100%;
+    height: 50px;
+    padding: 0 1rem;
+    border: 1px solid #e1e3e5;
+    outline: none;
+}
+
+.input_wrapper input:focus {
+    border: 1px solid #7ac142;
+}
+
+.authentication_wrapper {
+    display: flex;
+}
+
+.authentication_wrapper .auth_btn {
+    width: 150px;
+    border: none;
+    cursor: pointer;
+}
+
+/* 버튼 */
+.submit {
+    width: 100%;
+    height: 50px;
+    margin-top: 1rem;
+    background: #7ac142;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

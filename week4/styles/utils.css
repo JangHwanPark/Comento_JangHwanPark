@@ -1,3 +1,9 @@
+/* 접근성 처리 (스크린 리더) */
+.screen_out {
+    display: none;
+}
+
+/* 에러 메세지 */
 .error_message {
     color: red;
     font-size: 12px;

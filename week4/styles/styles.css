@@ -6,6 +6,13 @@ body, div, ul, li, dl, dd, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset, lege
     padding: 0;
 }
 
+/* 웹 기본 너비, 높이 설정 */
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
 /* a 링크 초기화 */
 a {
     color: inherit;

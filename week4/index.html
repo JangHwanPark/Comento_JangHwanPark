@@ -5,14 +5,29 @@
   <title>로그인</title>
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/utils.css">
+  <link rel="stylesheet" href="styles/form.css">
 </head>
 <body>
-<main class="container">
-  <h2>로그인</h2>
-  <span>계정이 없으신가요 ? <a href="pages/register/index.html">회원가입</a></span>
-  <form action="" class="login" novalidate></form>
-  <div class="error"></div>
-</main>
+<div class="container">
+  <div class="layout">
+    <div class="wrapper">
+      <header class="header screen_out">
+        <h2>로그인</h2>
+      </header>
+      <main class="content">
+        <section class="intro">
+          <form action="" class="login" novalidate>
+            <div class="error"></div>
+          </form>
+          <div class="move_auth">
+            <span>계정이 없으신가요 ?</span>
+            <a href="pages/register/index.html">회원가입</a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
 <script type="module" src="app.js"></script>
 </body>
 </html>

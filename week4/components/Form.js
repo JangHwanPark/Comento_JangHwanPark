@@ -25,7 +25,7 @@ export const createForm = (element, data) => {
       class: "input_wrapper",});
 
     const labelElement = createElement("label", {
-      for: field.name}, field.label);
+      for: field.name, class: "screen_out"}, field.label);
 
     const inputElement = createElement("input", {
       type: field.type,
@@ -78,8 +78,7 @@ export const createAuthElement = (element) => {
   });
 
   const labelElement = createElement("label", {
-    for: authField.name
-  }, authField.label);
+    for: authField.name, class: "screen_out"}, authField.label);
 
   const inputElement = createElement("input", {
     type: authField.type,
