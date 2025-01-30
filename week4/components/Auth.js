@@ -1,4 +1,3 @@
-// import {loginForm, registerForm} from "../data/dom.js";
 import {REGISTER_DATA} from "../data/form.js";
 import {createElement} from "../utils/createElement.js"; // 폼 데이터 임포트
 
