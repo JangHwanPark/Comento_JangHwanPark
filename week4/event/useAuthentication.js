@@ -1,6 +1,7 @@
 import { generateAuthCode } from "../utils/generateAuthCode.js";
+import {createElement} from "../utils/createElement.js";
 
-export const useRequestAuthCode = (button, input) => {
+export const useAuthentication = (button, input) => {
   if (!button || !input) {
     console.error("⚠️ 버튼 또는 입력 필드가 존재하지 않음");
     return;
@@ -11,16 +12,13 @@ export const useRequestAuthCode = (button, input) => {
     console.log("📌 인증 버튼 클릭됨!");
 
     // ✅ .input_wrapper 감싸는 요소 찾기
-    let authWrapper = input.closest(".input_wrapper");
-    if (!authWrapper) {
-      console.warn("⚠️ input이 .input_wrapper 내부에 존재하지 않음. 대신 부모 요소를 사용합니다.");
-      authWrapper = input.parentElement;
-    }
+    let authWrapper = input.closest(".input_wrap");
+    if (!authWrapper) return;
 
     // ✅ 인증번호 입력 필드 찾아서 보이게 처리
     let authFieldWrapper = authWrapper.nextElementSibling;
     if (!authFieldWrapper || !authFieldWrapper.classList.contains("screen_out")) {
-      authFieldWrapper = document.querySelector(".authentication .input_wrapper.screen_out");
+      authFieldWrapper = document.querySelector(".authentication .input_wrap.screen_out");
     }
 
     if (authFieldWrapper) {
@@ -37,9 +35,10 @@ export const useRequestAuthCode = (button, input) => {
     // ✅ .phone_wrap 다음에 .code_display 삽입
     const phoneWrap = authWrapper.parentElement.querySelector(".phone_wrap");
     if (!authCodeWrap) {
-      authCodeWrap = document.createElement("div");
-      authCodeWrap.classList.add("code_display");
-      authCodeWrap.textContent = `인증번호: ${authCode}`;
+      authCodeWrap = createElement("div", { class: "input_wrap code_display" });
+      const auth = createElement("div", { class: "test" });
+      auth.textContent = `인증번호 : ${authCode}`;
+      authCodeWrap.appendChild(auth);
 
       if (phoneWrap) {
         phoneWrap.parentElement.insertBefore(authCodeWrap, phoneWrap.nextElementSibling);

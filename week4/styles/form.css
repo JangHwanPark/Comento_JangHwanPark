@@ -77,6 +77,15 @@
     display: flex;
 }
 
+/* 인증 번호 */
+.authentication .code_display {
+    width: 100%;
+    height: 50px;
+    padding: 0 1rem;
+    align-items: center;
+    border: 1px solid #e1e3e5;
+}
+
 .authentication .auth_btn {
     width: 150px;
     border: none;
