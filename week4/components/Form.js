@@ -13,6 +13,9 @@ export const createForm = (element, data) => {
   // DOM 조작 최소화를 위한 Fragment
   const fragment = document.createDocumentFragment();
 
+  // 입력필드 저장
+  const inputFields = [];
+
   data.forEach(field => {
     // ✅인증번호 필드는 회원가입에서만 별도로 추가하고 따로 처리 (createAuthElement에서)
     if (field.name === "authentication") return;
@@ -36,6 +39,7 @@ export const createForm = (element, data) => {
     });
 
     // ✅요소 추가
+    inputFields.push(inputWrapper);
     inputWrapper.appendChild(labelElement);
     inputWrapper.appendChild(inputElement);
     fragment.appendChild(inputWrapper);
@@ -50,7 +54,7 @@ export const createForm = (element, data) => {
   element.appendChild(fragment);
 
   // 이벤트 등록
-  useSubmit(submitButton);
+  useSubmit(submitButton, inputFields);
 };
 
 // 인증번호 입력 필드와 인증 버튼을 동적으로 생성

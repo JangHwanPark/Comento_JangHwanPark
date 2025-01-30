@@ -3,7 +3,7 @@
  * @param {string} value - 검사할 입력값
  * @returns {boolean} - 공백이면 true, 아니면 false
  */
-const isEmpty = (value) => {
+export const isEmpty = (value) => {
   return value.trim() === "";
 };
 
@@ -14,7 +14,7 @@ const isEmpty = (value) => {
  * @param {number} max - 최대 길이
  * @returns {boolean} - 길이가 유효하면 true, 아니면 false
  */
-const isValidLength = (value, min, max) => {
+export const isValidLength = (value, min, max) => {
   return value.length >= min && value.length <= max;
 };
 
@@ -23,17 +23,27 @@ const isValidLength = (value, min, max) => {
  * @param {string} value - 검사할 입력값
  * @returns {boolean} - 위험한 문자 포함 시 true, 아니면 false
  */
-const hasInvalidCharacters = (value) => {
+export const hasInvalidCharacters = (value) => {
   const regex = /[<>'"%;)(&+]/g; // SQL 인젝션에서 사용될 수 있는 문자들
   return regex.test(value);
 };
+
+/**
+ * 이메일 형식 검사 (example123@gmail.com...)
+ * @param {string} value - 검사할 이메일 값
+ * @returns {boolean} - 형식이 올바르면 true, 아니면 false
+ */
+export const isValidEmail = (value) => {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(value);
+}
 
 /**
  * 전화번호 형식 검사 (01012345678 형식만 허용)
  * @param {string} value - 검사할 전화번호 값
  * @returns {boolean} - 형식이 올바르면 true, 아니면 false
  */
-const isValidPhone = (value) => {
+export const isValidPhone = (value) => {
   const phoneRegex = /^01[0-9]{9}$/; // 01012345678 형식만 허용
   return phoneRegex.test(value);
 };
