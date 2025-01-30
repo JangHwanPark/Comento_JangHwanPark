@@ -14,6 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // ✅ 회원가입 폼 생성
   if (registerForm) {
     createForm(registerForm, REGISTER_DATA);
-    createAuthElement(registerForm);   // 인증번호 필드 생성
+    createAuthElement(registerForm);
   }
 });

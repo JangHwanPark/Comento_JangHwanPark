@@ -18,11 +18,13 @@ export const createForm = (element, data) => {
 
   data.forEach(field => {
     // ✅인증번호 필드는 회원가입에서만 별도로 추가하고 따로 처리 (createAuthElement에서)
-    if (field.name === "authentication") return;
+    const isAuthentication = field.name === "authentication";
+    const isPhone = field.name === "phone";
+    if (isAuthentication || isPhone) return;
 
     // ✅div.wrapper, label, input 생성
     const inputWrapper = createElement("div", {
-      class: "input_wrapper",});
+      class: "input_wrap",});
 
     const labelElement = createElement("label", {
       for: field.name, class: "screen_out"}, field.label);
@@ -57,50 +59,70 @@ export const createForm = (element, data) => {
   useSubmit(submitButton, inputFields);
 };
 
-// 인증번호 입력 필드와 인증 버튼을 동적으로 생성
+/**
+ * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
+ * @param {HTMLElement} element - 폼 요소 (인증 UI 추가할 위치)
+ */
 export const createAuthElement = (element) => {
   if (!element) {
     console.error("회원가입 폼이 존재하지 않아 인증 필드를 추가할 수 없습니다.");
     return;
   }
 
-  // 인증번호 필드 정보 가져오기
-  const authField = REGISTER_DATA.find(field =>
-      field.name === "authentication");
-  if (!authField) return;
+  // ✅ "휴대폰 번호"와 "인증 번호" 필드 가져오기
+  const authFields = REGISTER_DATA.filter(field =>
+      field.name === "phone" || field.name === "authentication"
+  );
 
-  // 기존 인증번호 필드 제거 (중복 방지)
-  document.querySelector(".authentication_wrapper")?.remove();
+  if (authFields.length === 0) return;
 
-  // div, label, input, button 태그 생성
-  const authWrapper = createElement("div", {
-    class: "input_wrapper authentication_wrapper"
+  // ✅ 기존 인증 필드 제거 (중복 방지)
+  document.querySelector(".authentication")?.remove();
+
+  // ✅ 인증 필드 전체를 감싸는 wrapper
+  const authContainer = createElement("div", {
+    class: "authentication"
   });
 
-  const labelElement = createElement("label", {
-    for: authField.name, class: "screen_out"}, authField.label);
+  // ✅ 필터링된 "휴대폰 번호" & "인증 번호" 필드 추가
+  authFields.forEach(field => {
+    console.log("🔍 필드 확인:", field.name);
+    const fieldWrapper = createElement("div", {
+      class: `input_wrap ${field.name === "authentication" ? "screen_out" : "phone_wrap"}`
+    });
 
-  const inputElement = createElement("input", {
-    type: authField.type,
-    name: authField.name,
-    id: authField.name,
-    placeholder: authField.placeholder || "",
-    required: authField.required || false,
+    const labelElement = createElement("label", {
+      for: field.name, class: "screen_out"
+    }, field.label);
+
+    console.log(field.name)
+    const inputElement = createElement("input", {
+      type: field.type,
+      name: field.name,
+      id: field.name,
+      placeholder: field.placeholder || "",
+      required: field.required || false,
+    });
+
+    // ✅ 버튼 텍스트 설정
+    const buttonText = field.name === "phone" ? "인증요청" : "인증하기";
+    const authButton = createElement("button", { class: "auth_btn" }, buttonText);
+
+    // ✅ "인증 요청" 버튼 클릭 시 클래스 토글
+    if (field.name === "phone") {
+      useAuthentication(authButton, inputElement);
+    }
+
+    // 요소 추가
+    fieldWrapper.appendChild(labelElement);
+    fieldWrapper.appendChild(inputElement);
+    fieldWrapper.appendChild(authButton);
+    authContainer.appendChild(fieldWrapper);
   });
 
-  // 버튼 생성 및 인증번호 클릭 이벤트 등록
-  const authButton = createElement("button", {
-    class: "auth_btn"}, "인증하기");
-  useAuthentication(authButton)
-
-  // 요소 추가
-  authWrapper.appendChild(labelElement);
-  authWrapper.appendChild(inputElement);
-  authWrapper.appendChild(authButton);
-
-  // 인증번호 필드는 회원가입 폼에서 회원가입 버튼 위에 삽입
+  // ✅ 인증 필드를 회원가입 버튼 위에 삽입
   const submitBtn = element.querySelector(".submit");
-  if (submitBtn) element.insertBefore(authWrapper, submitBtn);
+  if (submitBtn) element.insertBefore(authContainer, submitBtn);
   else console.error("회원가입 버튼을 찾을 수 없어 인증 필드를 추가할 수 없습니다.");
 };
 

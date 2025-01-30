@@ -1,6 +1,6 @@
 /* 접근성 처리 (스크린 리더) */
 .screen_out {
-    display: none;
+    display: none !important;
 }
 
 /* 에러 메세지 */
@@ -8,4 +8,15 @@
     color: red;
     font-size: 12px;
     margin-top: 4px;
+}
+
+/* 인증 번호 */
+/* 기본적으로 숨김 */
+.auth_wrapper {
+    display: none;
+}
+
+/* 토글되면 보이도록 설정 */
+.auth_wrapper.request {
+    display: block;
 }
