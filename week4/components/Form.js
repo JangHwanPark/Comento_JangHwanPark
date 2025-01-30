@@ -1,7 +1,7 @@
 import {REGISTER_DATA} from "../data/form.js";
 import {createElement} from "../utils/createElement.js";
 import {useSubmit} from "../event/useSubmit.js";
-import {useAuthentication} from "../event/useAuthentication.js";
+import {useRequestAuthCode} from "../event/useRequestAuthCode.js";
 
 // 로그인 회원가입 폼 동적으로 생성
 export const createForm = (element, data) => {
@@ -38,6 +38,7 @@ export const createForm = (element, data) => {
       minLength: field.minLength || null,
       maxLength: field.maxLength || null,
       pattern: field.pattern || null,
+      value: field.value || "",
     });
 
     // ✅요소 추가
@@ -102,6 +103,7 @@ export const createAuthElement = (element) => {
       id: field.name,
       placeholder: field.placeholder || "",
       required: field.required || false,
+      value: field.value || "",
     });
 
     // ✅ 버튼 텍스트 설정
@@ -110,7 +112,7 @@ export const createAuthElement = (element) => {
 
     // ✅ "인증 요청" 버튼 클릭 시 클래스 토글
     if (field.name === "phone") {
-      useAuthentication(authButton, inputElement);
+      useRequestAuthCode(authButton, inputElement);
     }
 
     // 요소 추가

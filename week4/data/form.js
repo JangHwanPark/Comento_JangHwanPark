@@ -14,7 +14,8 @@ export const LOGIN_DATA = [
     name: "id",
     type: "text",
     placeholder: "아이디를 입력하세요",
-    required: true
+    required: true,
+    value: "janghwan01",
   },
   {
     label: "비밀번호",
@@ -23,7 +24,8 @@ export const LOGIN_DATA = [
     placeholder: "비밀번호를 입력하세요",
     required: true,
     minLength: 8,
-    maxLength: 20
+    maxLength: 20,
+    value: "qlalfqjsgh12@",
   }
 ];
 
@@ -35,7 +37,8 @@ export const REGISTER_DATA = [
     placeholder: "아이디를 입력하세요",
     required: true,
     minLength: 4,
-    maxLength: 16
+    maxLength: 16,
+    value: "janghwan01",
   },
   {
     label: "비밀번호",
@@ -44,14 +47,16 @@ export const REGISTER_DATA = [
     placeholder: "비밀번호를 입력하세요",
     required: true,
     minLength: 8,
-    maxLength: 20
+    maxLength: 20,
+    value: "qlalfqjsgh12@",
   },
   {
     label: "비밀번호 확인",
     name: "pwd_confirm",
     type: "password",
     placeholder: "비밀번호를 다시 입력하세요",
-    required: true
+    required: true,
+    value: "qlalfqjsgh12@",
   },
   {
     label: "닉네임",
@@ -60,7 +65,8 @@ export const REGISTER_DATA = [
     placeholder: "닉네임을 입력하세요",
     required: true,
     minLength: 2,
-    maxLength: 12
+    maxLength: 12,
+    value: "HelloWorld",
   },
   {
     label: "이메일",
@@ -68,7 +74,8 @@ export const REGISTER_DATA = [
     type: "email",
     placeholder: "example@email.com",
     required: true,
-    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+    value: "janghwan01@example.com",
   },
   {
     label: "휴대폰 번호",
@@ -76,14 +83,16 @@ export const REGISTER_DATA = [
     type: "tel",
     placeholder: "01012345678",
     required: true,
-    pattern: "^01[0-9]-[0-9]{3,4}-[0-9]{4}$"
+    pattern: "^01[0-9]-[0-9]{3,4}-[0-9]{4}$",
+    value: "01012345678",
   },
   {
     label: "인증 번호",
     name: "authentication",
     type: "text",
     placeholder: "인증 번호를 입력하세요",
-    required: true
+    required: true,
+    value: "",
   }
 ];
 
