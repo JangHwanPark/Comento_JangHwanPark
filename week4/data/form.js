@@ -86,3 +86,7 @@ export const REGISTER_DATA = [
     required: true
   }
 ];
+
+export const TODO_DATA = [
+
+]
