@@ -1,12 +1,12 @@
+import {showError} from "../utils";
 import {
   saveUserInfo,
-  showError,
   hasInvalidCharacters,
   isEmpty,
   isValidEmail,
   isValidLength,
   isValidPhone
-} from "../utils";
+} from "../service";
 
 /**
  * ✅ 폼 제출 이벤트 핸들러
