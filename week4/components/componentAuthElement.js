@@ -1,6 +1,6 @@
 import {REGISTER_DATA, EVENT_HANDLERS} from "../data/";
 import {createElement} from "../utils";
-import {createAuthField} from "../components";
+import {componentAuthField} from "../components";
 
 /**
  * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
@@ -27,7 +27,7 @@ export const componentAuthElement = (element) => {
 
   // ✅ 필드 생성 및 추가
   authFields.reduce((conn, field) => {
-    const fieldWrapper = createAuthField(field);
+    const fieldWrapper = componentAuthField(field);
     const handler = EVENT_HANDLERS[field.name];
 
     // ✅ 핸들러 등록 (존재하는 경우)

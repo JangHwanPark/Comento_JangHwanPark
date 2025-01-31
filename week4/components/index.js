@@ -1,4 +1,5 @@
 export { componentForm } from "./componentForm.js";
 export { componentAuthElement } from "./componentAuthElement.js";
 export { componentTodoItem } from "./componentTodoItem.js";
-export { createAuthField } from "./createAuthField";
+export { componentAuthField } from "./componentAuthField.js";
+export { componentInputField } from "./componentInputField.js";

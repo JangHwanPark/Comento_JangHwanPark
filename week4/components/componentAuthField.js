@@ -5,7 +5,7 @@ import {createElement} from "../utils";
  * @param {Object} field - 필드 데이터 (label, name, type, placeholder 등)
  * @returns {HTMLElement} - 생성된 필드 요소
  */
-export const createAuthField = ({
+export const componentAuthField = ({
   name,
   label,
   type,
