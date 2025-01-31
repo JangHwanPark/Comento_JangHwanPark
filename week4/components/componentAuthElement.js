@@ -1,6 +1,7 @@
-import {REGISTER_DATA, EVENT_HANDLERS} from "../data/";
+import {REGISTER_DATA} from "../data/";
 import {createElement} from "../utils";
 import {componentAuthField} from "../components";
+import {setupAuthEvents} from "../service";
 
 /**
  * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
@@ -26,23 +27,23 @@ export const componentAuthElement = (element) => {
   });
 
   // ✅ 필드 생성 및 추가
-  authFields.reduce((conn, field) => {
+  authFields.forEach((field) => {
     const fieldWrapper = componentAuthField(field);
-    const handler = EVENT_HANDLERS[field.name];
 
-    // ✅ 핸들러 등록 (존재하는 경우)
-    if (handler) {
-      const inputElement = fieldWrapper.querySelector("input");
-      const authButton = fieldWrapper.querySelector(".auth_btn");
-      handler(authButton, inputElement);
+    // ✅ 인증번호 입력 필드(`authentication`)는 기본적으로 숨김 상태이므로 표시하도록 수정
+    if (field.name === "authentication") {
+      fieldWrapper.classList.add("screen_out"); // 기본 숨김 상태 유지
     }
 
-    conn.appendChild(fieldWrapper);
-    return conn;
-  }, authContainer);
+    authContainer.appendChild(fieldWrapper);
+  });
 
   // ✅ 인증 필드를 회원가입 버튼 위에 삽입
   const submitBtn = element.querySelector(".submit");
-  if (submitBtn) element.insertBefore(authContainer, submitBtn);
-  else console.error("회원가입 버튼을 찾을 수 없어 인증 필드를 추가할 수 없습니다.");
+  if (submitBtn) {
+    element.insertBefore(authContainer, submitBtn);
+    setupAuthEvents(authContainer); // ✅ 핸들러 연결
+  } else {
+    console.error("❌ 회원가입 버튼을 찾을 수 없어 인증 필드를 추가할 수 없습니다.");
+  }
 };

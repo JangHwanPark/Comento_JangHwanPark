@@ -1,6 +1,6 @@
 import {createElement} from "../utils";
-import {useSubmit} from "../event";
 import {componentInputField} from "../components";
+import {setupFormEvents} from "../service";
 
 /**
  * ✅ 로그인 / 회원가입 폼 동적 생성
@@ -33,6 +33,6 @@ export const componentForm = (
   fragment.appendChild(submitButton);
   form.appendChild(fragment);
 
-  // 이벤트 등록
-  useSubmit(submitButton, form);
+  // ✅ 이벤트 설정 (자동 매핑)
+  setupFormEvents(form);
 };

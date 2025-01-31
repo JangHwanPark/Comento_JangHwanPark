@@ -36,7 +36,10 @@ export const componentAuthField = ({
 
   // ✅ 버튼 생성
   const buttonText = name === "phone" ? "인증요청" : "인증하기";
-  const authButton = createElement("button", { class: "auth_btn" }, buttonText);
+  const authButton = createElement("button", {
+    class: "auth_btn",
+    "data-type": name
+  }, buttonText);
 
   // ✅ 요소 추가
   fieldWrapper.append(labelElement, inputElement, authButton);
