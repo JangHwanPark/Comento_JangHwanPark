@@ -1,6 +1,6 @@
-import {REGISTER_DATA} from "../data/form.js";
+import {REGISTER_DATA, EVENT_HANDLERS} from "../data/";
 import {createElement} from "../utils";
-import {useAuthentication, useVerification} from "../event";
+import {createAuthField} from "../components";
 
 /**
  * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
@@ -13,10 +13,8 @@ export const componentAuthElement = (element) => {
   }
 
   // ✅ "휴대폰 번호"와 "인증 번호" 필드 가져오기
-  const authFields = REGISTER_DATA.filter(field =>
-      field.name === "phone" || field.name === "authentication"
-  );
-
+  const authFields = REGISTER_DATA.filter(({name}) =>
+      ["phone", "authentication"].includes(name));
   if (authFields.length === 0) return;
 
   // ✅ 기존 인증 필드 제거 (중복 방지)
@@ -27,39 +25,21 @@ export const componentAuthElement = (element) => {
     class: "authentication"
   });
 
-  // ✅ 필터링된 "휴대폰 번호" & "인증 번호" 필드 추가
-  authFields.forEach(field => {
-    const fieldWrapper = createElement("div", {
-      class: `input_wrap ${field.name === "authentication" ? "screen_out" : "phone_wrap"}`
-    });
+  // ✅ 필드 생성 및 추가
+  authFields.reduce((conn, field) => {
+    const fieldWrapper = createAuthField(field);
+    const handler = EVENT_HANDLERS[field.name];
 
-    const labelElement = createElement("label", {
-      for: field.name, class: "screen_out"
-    }, field.label);
+    // ✅ 핸들러 등록 (존재하는 경우)
+    if (handler) {
+      const inputElement = fieldWrapper.querySelector("input");
+      const authButton = fieldWrapper.querySelector(".auth_btn");
+      handler(authButton, inputElement);
+    }
 
-    const inputElement = createElement("input", {
-      type: field.type,
-      name: field.name,
-      id: field.name,
-      placeholder: field.placeholder || "",
-      required: field.required || false,
-      value: field.value || "",
-    });
-
-    // ✅ 버튼 텍스트 설정
-    const buttonText = field.name === "phone" ? "인증요청" : "인증하기";
-    const authButton = createElement("button", { class: "auth_btn" }, buttonText);
-
-    // ✅ "인증 요청" 버튼 클릭 시 클래스 토글
-    if (field.name === "phone") useAuthentication(authButton, inputElement);
-    if (field.name === "authentication") useVerification(authButton, inputElement);
-
-    // 요소 추가
-    fieldWrapper.appendChild(labelElement);
-    fieldWrapper.appendChild(inputElement);
-    fieldWrapper.appendChild(authButton);
-    authContainer.appendChild(fieldWrapper);
-  });
+    conn.appendChild(fieldWrapper);
+    return conn;
+  }, authContainer);
 
   // ✅ 인증 필드를 회원가입 버튼 위에 삽입
   const submitBtn = element.querySelector(".submit");
