@@ -1,4 +1,4 @@
-export { createElement } from "./createElement";
+export { createElement } from "./createElement.js";
 export { generateAuthCode } from "./generateAuthCode.js";
 export { showError } from "./showError.js";
 export {

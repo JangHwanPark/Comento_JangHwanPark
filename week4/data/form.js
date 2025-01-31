@@ -97,5 +97,11 @@ export const REGISTER_DATA = [
 ];
 
 export const TODO_DATA = [
-
-]
+  {
+    label: "할 일",
+    name: "todo",
+    type: "text",
+    placeholder: "할 일을 입력하세요",
+    required: true
+  }
+];

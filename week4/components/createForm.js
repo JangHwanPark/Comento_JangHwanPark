@@ -2,8 +2,8 @@
 import {createElement} from "../utils";
 import {useSubmit} from "../event";
 
-export const createForm = (element, data) => {
-  if (!element) {
+export const createForm = (form, data, buttonText = "제출") => {
+  if (!form) {
     console.error("폼 요소가 존재하지 않음");
     return;
   }
@@ -46,14 +46,14 @@ export const createForm = (element, data) => {
     fragment.appendChild(inputWrapper);
   });
 
-  // ✅로그인, 회원가입(입력 필드) 버튼 추가
-  const btnText = element?.classList.contains("login") ? "로그인" : "회원가입";
+  // ✅ 버튼 추가
   const submitButton = createElement("button", {
-    class: "submit"}, btnText);
+    class: "submit"
+  }, buttonText);
 
   fragment.appendChild(submitButton);
-  element.appendChild(fragment);
+  form.appendChild(fragment);
 
   // 이벤트 등록
-  useSubmit(submitButton, element);
+  useSubmit(submitButton, form);
 };
