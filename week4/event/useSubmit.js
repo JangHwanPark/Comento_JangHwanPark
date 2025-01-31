@@ -1,15 +1,18 @@
 import { hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, isValidPhone } from "../utils/validation.js";
 import {showError} from "../utils/showError.js";
 
-export const useSubmit = (button, fields) => {
-  if (!button || !fields || fields.length === 0) {
-    console.error("⚠️ 버튼 또는 입력 필드가 존재하지 않음");
+export const useSubmit = (button, form) => {
+  console.log("useSubmit", button);
+  console.log("useSubmit", form);
+  if (!button || !form) {
+    console.error("⚠️ 버튼 또는 폼이 존재하지 않음");
     return;
   }
 
   button.addEventListener("click", (e) => {
     e.preventDefault();
     let isValid = true;
+    const fields = Array.from(form.querySelectorAll(".input_wrap"));
 
     fields.forEach((field) => {
       const inputElement = field.querySelector("input");
@@ -64,7 +67,24 @@ export const useSubmit = (button, fields) => {
       }
     });
 
-    if (isValid) window.location.replace("./pages/todo/index.html");
-    else console.log("❌ 유효하지 않은 필드가 있어 제출 취소됨");
+    if (isValid) {
+      const btnText = button.textContent.trim();
+
+      switch (btnText) {
+        case "회원가입":
+          window.location.replace("../../index.html");
+          break;
+
+        case "로그인":
+          window.location.replace("./pages/todo/index.html");
+          break;
+
+        default:
+          console.warn(`⚠️ 예상치 못한 버튼 텍스트: ${btnText}`);
+          break;
+      }
+    } else {
+      console.log("❌ 유효하지 않은 필드가 있어 제출 취소됨");
+    }
   });
 };

@@ -2,6 +2,7 @@ import {REGISTER_DATA} from "../data/form.js";
 import {createElement} from "../utils/createElement.js";
 import {useSubmit} from "../event/useSubmit.js";
 import {useAuthentication} from "../event/useAuthentication.js";
+import {useVerification} from "../event/useVerification.js";
 
 // 로그인 회원가입 폼 동적으로 생성
 export const createForm = (element, data) => {
@@ -57,7 +58,7 @@ export const createForm = (element, data) => {
   element.appendChild(fragment);
 
   // 이벤트 등록
-  useSubmit(submitButton, inputFields);
+  useSubmit(submitButton, element);
 };
 
 /**
@@ -111,9 +112,8 @@ export const createAuthElement = (element) => {
     const authButton = createElement("button", { class: "auth_btn" }, buttonText);
 
     // ✅ "인증 요청" 버튼 클릭 시 클래스 토글
-    if (field.name === "phone") {
-      useAuthentication(authButton, inputElement);
-    }
+    if (field.name === "phone") useAuthentication(authButton, inputElement);
+    if (field.name === "authentication") useVerification(authButton, inputElement);
 
     // 요소 추가
     fieldWrapper.appendChild(labelElement);
