@@ -2,7 +2,7 @@
 import {createElement} from "../utils";
 import {useSubmit} from "../event";
 
-export const createForm = (form, data, buttonText = "제출") => {
+export const componentForm = (form, data, buttonText = "제출") => {
   if (!form) {
     console.error("폼 요소가 존재하지 않음");
     return;

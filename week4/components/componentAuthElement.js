@@ -6,7 +6,7 @@ import {useAuthentication, useVerification} from "../event";
  * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
  * @param {HTMLElement} element - 폼 요소 (인증 UI 추가할 위치)
  */
-export const createAuthElement = (element) => {
+export const componentAuthElement = (element) => {
   if (!element) {
     console.error("회원가입 폼이 존재하지 않아 인증 필드를 추가할 수 없습니다.");
     return;

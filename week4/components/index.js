@@ -1,3 +1,3 @@
-export { createForm } from "./createForm.js";
-export { createAuthElement } from "./createAuthElement.js";
-export { createTodoForm } from "./createTodoForm.js";
+export { componentForm } from "./componentForm.js";
+export { componentAuthElement } from "./componentAuthElement.js";
+export { componentTodoItem } from "./componentTodoItem.js";
