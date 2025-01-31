@@ -1,65 +1,6 @@
 import {REGISTER_DATA} from "../data/form.js";
-import {createElement} from "../utils/createElement.js";
-import {useSubmit} from "../event/useSubmit.js";
-import {useAuthentication} from "../event/useAuthentication.js";
-import {useVerification} from "../event/useVerification.js";
-
-// 로그인 회원가입 폼 동적으로 생성
-export const createForm = (element, data) => {
-  if (!element) {
-    console.error("폼 요소가 존재하지 않음");
-    return;
-  }
-
-  // DOM 조작 최소화를 위한 Fragment
-  const fragment = document.createDocumentFragment();
-
-  // 입력필드 저장
-  const inputFields = [];
-
-  data.forEach(field => {
-    // ✅인증번호 필드는 회원가입에서만 별도로 추가하고 따로 처리 (createAuthElement에서)
-    const isAuthentication = field.name === "authentication";
-    const isPhone = field.name === "phone";
-    if (isAuthentication || isPhone) return;
-
-    // ✅div.wrapper, label, input 생성
-    const inputWrapper = createElement("div", {
-      class: "input_wrap",});
-
-    const labelElement = createElement("label", {
-      for: field.name, class: "screen_out"}, field.label);
-
-    const inputElement = createElement("input", {
-      type: field.type,
-      name: field.name,
-      id: field.id || field.name,
-      placeholder: field.placeholder,
-      required: field.required || false,
-      minLength: field.minLength || null,
-      maxLength: field.maxLength || null,
-      pattern: field.pattern || null,
-      value: field.value || "",
-    });
-
-    // ✅요소 추가
-    inputFields.push(inputWrapper);
-    inputWrapper.appendChild(labelElement);
-    inputWrapper.appendChild(inputElement);
-    fragment.appendChild(inputWrapper);
-  });
-
-  // ✅로그인, 회원가입(입력 필드) 버튼 추가
-  const btnText = element?.classList.contains("login") ? "로그인" : "회원가입";
-  const submitButton = createElement("button", {
-    class: "submit"}, btnText);
-
-  fragment.appendChild(submitButton);
-  element.appendChild(fragment);
-
-  // 이벤트 등록
-  useSubmit(submitButton, element);
-};
+import {createElement} from "../utils";
+import {useAuthentication, useVerification} from "../event";
 
 /**
  * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
@@ -127,8 +68,3 @@ export const createAuthElement = (element) => {
   if (submitBtn) element.insertBefore(authContainer, submitBtn);
   else console.error("회원가입 버튼을 찾을 수 없어 인증 필드를 추가할 수 없습니다.");
 };
-
-// 할일 목록 폼 동적으로 생성
-export const createTodoForm = () => {
-
-}

@@ -1,5 +1,4 @@
-import { hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, isValidPhone } from "../utils/validation.js";
-import {showError} from "../utils/showError.js";
+import {showError, hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, isValidPhone} from "../utils";
 
 export const useSubmit = (button, form) => {
   console.log("useSubmit", button);

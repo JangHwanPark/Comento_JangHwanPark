@@ -1,5 +1,4 @@
-import {isAuthCodeValid, isEmpty} from "../utils/validation.js";
-import {showError} from "../utils/showError.js";
+import {showError, isAuthCodeValid, isEmpty} from "../utils";
 
 export const useVerification = (button, input) => {
   if (!button || !input) {

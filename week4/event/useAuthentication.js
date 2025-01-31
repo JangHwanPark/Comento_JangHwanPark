@@ -1,7 +1,4 @@
-import { generateAuthCode } from "../utils/generateAuthCode.js";
-import {createElement} from "../utils/createElement.js";
-import {isEmpty, isValidPhone} from "../utils/validation.js";
-import {showError} from "../utils/showError.js";
+import {isEmpty, isValidPhone, showError, createElement, generateAuthCode} from "../utils";
 
 export const useAuthentication = (button, input) => {
   if (!button || !input) {
