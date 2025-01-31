@@ -59,6 +59,5 @@ export const isAuthCodeValid = (userInput, generatedCode) => {
     console.error("⚠️ 인증번호가 제공되지 않았습니다.");
     return false;
   }
-  console.log(`✅ 비교: 입력값 = "${userInput.trim()}", 저장된 코드 = "${generatedCode.trim()}"`);
   return userInput.trim() === generatedCode.trim();
 }

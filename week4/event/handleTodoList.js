@@ -2,7 +2,7 @@ import { componentTodoItem } from "../components";
 
 export const handleClickTodo = (form, todoList) => {
   if (!todoList) {
-    console.error("❌ todoList가 존재하지 않습니다.");
+    console.error("❌ handleClickTodo: todoList가 존재하지 않음!");
     return;
   }
 
@@ -14,7 +14,6 @@ export const handleClickTodo = (form, todoList) => {
     return;
   }
 
-  console.log("📝 추가된 할 일:", value);
   const todoItem = componentTodoItem(value);
   todoList.appendChild(todoItem);
 
@@ -24,7 +23,6 @@ export const handleClickTodo = (form, todoList) => {
 
 export const handleDeleteTodo = (e) => {
   if (e.target.classList.contains("delete_btn")) {
-    console.log("🗑️ 삭제 버튼 클릭됨");
     const todoItem = e.target.closest(".todo_item");
     if (todoItem) todoItem.remove(); // ✅ 리스트에서 삭제
   }

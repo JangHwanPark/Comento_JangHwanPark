@@ -1,5 +1,4 @@
 import {showError, hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, isValidPhone} from "../utils";
-import {handleClickTodo} from "../event";
 
 export const useSubmit = (button, form) => {
   if (!button || !form) {
@@ -53,10 +52,6 @@ export const useSubmit = (button, form) => {
           if (isEmpty(value)) errorMessage = `"${label}"은 필수 입력 항목입니다.`;
           break;
 
-        case "할 일":
-          if (isEmpty(value)) errorMessage = `${label}을 입력해 주세요.`;
-          break;
-
         default:
           console.warn(`⚠️ "${label}"에 대한 유효성 검사 없음`);
           break;
@@ -79,10 +74,6 @@ export const useSubmit = (button, form) => {
 
         case "로그인":
           window.location.replace("./pages/todo/index.html");
-          break;
-
-        case "추가":
-          handleClickTodo(form);
           break;
 
         default:

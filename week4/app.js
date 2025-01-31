@@ -1,7 +1,7 @@
 // DOM이 완전히 로드된 후 실행
 import {componentAuthElement, componentForm} from "./components";
 import {LOGIN_DATA, REGISTER_DATA, TODO_DATA} from "./data/form.js";
-import {handleClickTodo} from "./event";
+import {handleClickTodo, handleDeleteTodo} from "./event";
 
 window.addEventListener("DOMContentLoaded", () => {
   // ✅ DOM 요소 가져오기
@@ -22,16 +22,16 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // ✅ 할일 목록 폼 생성
-  if (todoForm && todoList) {
+  if (todoForm) {
     componentForm(todoForm, TODO_DATA, "추가");
 
-    // 폼 렌더링 이후 버튼을 불러와야한
+    // ✅ 투두 리스트 버튼 이벤트, 폼 렌더링 이후 버튼을 불러와야함
     const addButton = todoForm.querySelector(".submit");
     if (addButton) {
-      addButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        handleClickTodo(todoForm, todoList);
-      });
+      addButton.addEventListener("click", () => handleClickTodo(todoForm, todoList));
+
+      // ✅ 삭제 버튼 이벤트 위임
+      todoList.addEventListener("click", handleDeleteTodo);
     }
   }
 });

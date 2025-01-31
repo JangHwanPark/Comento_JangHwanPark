@@ -29,7 +29,6 @@ export const componentAuthElement = (element) => {
 
   // ✅ 필터링된 "휴대폰 번호" & "인증 번호" 필드 추가
   authFields.forEach(field => {
-    console.log("🔍 필드 확인:", field.name);
     const fieldWrapper = createElement("div", {
       class: `input_wrap ${field.name === "authentication" ? "screen_out" : "phone_wrap"}`
     });
@@ -38,7 +37,6 @@ export const componentAuthElement = (element) => {
       for: field.name, class: "screen_out"
     }, field.label);
 
-    console.log(field.name)
     const inputElement = createElement("input", {
       type: field.type,
       name: field.name,

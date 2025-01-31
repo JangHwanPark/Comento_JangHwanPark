@@ -1,3 +1,5 @@
 export const generateAuthCode = (length = 6) => {
-  return Math.floor(100000 + Math.random() * 900000).toString().substring(0, length);
+  return Math.floor(100000 + Math.random() * 900000)
+      .toString()
+      .substring(0, length);
 }
