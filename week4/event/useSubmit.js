@@ -1,5 +1,18 @@
-import {showError, hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, isValidPhone} from "../utils";
+import {
+  saveUserInfo,
+  showError,
+  hasInvalidCharacters,
+  isEmpty,
+  isValidEmail,
+  isValidLength,
+  isValidPhone
+} from "../utils";
 
+/**
+ * ✅ 폼 제출 이벤트 핸들러
+ * @param {HTMLElement} button - 제출 버튼 요소
+ * @param {HTMLElement} form - 폼 요소
+ */
 export const useSubmit = (button, form) => {
   if (!button || !form) {
     console.error("⚠️ 버튼 또는 폼이 존재하지 않음");
@@ -69,6 +82,7 @@ export const useSubmit = (button, form) => {
 
       switch (btnText) {
         case "회원가입":
+          saveUserInfo(form);
           window.location.replace("../../index.html");
           break;
 
