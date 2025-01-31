@@ -10,8 +10,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const todoForm = document.querySelector("#todo");
   const todoList = document.querySelector(".todo_list");
 
-  console.log(todoList); // ✅ 여기서 다시 확인
-
   // ✅ 로그인 폼 생성
   if (loginForm) {
     componentForm(loginForm, LOGIN_DATA, "로그인");

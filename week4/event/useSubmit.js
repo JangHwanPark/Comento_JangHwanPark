@@ -2,8 +2,6 @@ import {showError, hasInvalidCharacters, isEmpty, isValidEmail, isValidLength, i
 import {handleClickTodo} from "../event";
 
 export const useSubmit = (button, form) => {
-  console.log("useSubmit", button);
-  console.log("useSubmit", form);
   if (!button || !form) {
     console.error("⚠️ 버튼 또는 폼이 존재하지 않음");
     return;
@@ -18,7 +16,7 @@ export const useSubmit = (button, form) => {
       const inputElement = field.querySelector("input");
       const label = field.querySelector("label")?.textContent.trim() || "undefined";
       const value = inputElement?.value.trim() || "";
-      console.log(label)
+
       // 기존 경고 메시지 삭제
       field.querySelector(".error-message")?.remove();
       let errorMessage = "";
