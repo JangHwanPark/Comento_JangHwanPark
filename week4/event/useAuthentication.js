@@ -48,8 +48,13 @@ export const useAuthentication = (button, input) => {
     const phoneWrap = authWrapper.parentElement.querySelector(".phone_wrap");
     if (!authCodeWrap) {
       authCodeWrap = createElement("div", { class: "input_wrap code_display" });
-      const auth = createElement("div", { class: "test" });
-      auth.textContent = `인증번호 : ${authCode}`;
+      const auth = createElement("div", { class: "code_wrap" });
+      const title = createElement("span", { class: "title" });
+      const code = createElement("span", { class: "code" });
+      title.textContent = `인증번호 : `;
+      code.textContent = authCode;
+      auth.appendChild(title);
+      auth.appendChild(code);
       authCodeWrap.appendChild(auth);
 
       if (phoneWrap) {
