@@ -158,6 +158,8 @@ export const isValidSignInFields = (form) => {
     return false;
   }
 
+  // ✅ 로그인 성공 → 세션스토리지에 사용자 정보 저장
+  sessionStorage.setItem("user", JSON.stringify(userData));
   return true;
 }
 

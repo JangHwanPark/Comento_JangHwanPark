@@ -1,5 +1,5 @@
 // DOM이 완전히 로드된 후 실행
-import {componentAuthElement, componentForm} from "./components";
+import {componentAuthElement, componentForm, componentUserInfo} from "./components";
 import {handleDeleteTodo, useAddEvent} from "./event";
 import {LOGIN_DATA, REGISTER_DATA, TODO_DATA} from "./data/form.js";
 import {todoList} from "./data";
@@ -23,6 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ✅ 할일 목록 폼 생성
   if (todoForm) {
+    componentUserInfo();
     componentForm(todoForm, TODO_DATA, "추가");
     useAddEvent(todoList, ".delete_btn", "click", handleDeleteTodo)
   }

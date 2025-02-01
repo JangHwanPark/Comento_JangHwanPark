@@ -3,7 +3,14 @@
  * @param {HTMLElement} form - 회원가입 폼 요소
  */
 export const saveUserInfo = (form) => {
-  const formData = {};
+  const formData = {
+    defaultCnt: [{
+      todoCnt: 0,
+      completeCnt: 0,
+      deleteCnt: 0,
+    }]
+  };
+
   const inputs = form.querySelectorAll("input");
 
   inputs.forEach((input) => {

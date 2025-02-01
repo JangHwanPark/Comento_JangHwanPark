@@ -36,6 +36,12 @@ export const handleSignIn = (form) => {
   window.location.replace("./pages/todo/index.html");
 };
 
+/** 로그아웃 이벤트 핸들러 */
+export const handleLogout = () => {
+  sessionStorage.removeItem("user");
+  window.location.replace("../../index.html");
+};
+
 /**
  * ✅ 인증 요청 이벤트 핸들러
  * @param {HTMLElement} form - 사용자가 입력한 폼 데이터
