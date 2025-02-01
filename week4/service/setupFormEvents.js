@@ -1,4 +1,9 @@
-import { useSubmit, handleSignUp, handleSignIn } from "../event";
+import {
+  useSubmit,
+  handleSignUp,
+  handleSignIn,
+  handleAddTodo
+} from "../event";
 
 /**
  * ✅ 회원가입 및 로그인 폼 설정
@@ -10,6 +15,7 @@ export const setupFormEvents = (form) => {
   const EVENT_HANDLERS = {
     "회원가입": handleSignUp,
     "로그인": handleSignIn,
+    "추가": handleAddTodo,
   };
 
   const submitButton = form.querySelector(".submit");

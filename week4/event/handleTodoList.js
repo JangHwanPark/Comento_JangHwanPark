@@ -1,11 +1,7 @@
 import { componentTodoItem } from "../components";
+import {todoList} from "../data";
 
-export const handleClickTodo = (form, todoList) => {
-  if (!todoList) {
-    console.error("❌ handleClickTodo: todoList가 존재하지 않음!");
-    return;
-  }
-
+export const handleAddTodo = (form) => {
   const inputElement = form.querySelector("input[name='todo']");
   const value = inputElement?.value.trim();
 
