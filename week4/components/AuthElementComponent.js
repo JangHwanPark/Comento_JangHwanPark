@@ -1,13 +1,13 @@
 import {REGISTER_DATA} from "../data/";
 import {createElement} from "../utils";
-import {componentAuthField} from "../components";
+import {authFieldComponent} from "../components";
 import {setupAuthEvents} from "../service";
 
 /**
  * 인증번호 입력 필드 및 버튼 생성 (UI 담당)
  * @param {HTMLElement} element - 폼 요소 (인증 UI 추가할 위치)
  */
-export const componentAuthElement = (element) => {
+export const authElementComponent = (element) => {
   if (!element) {
     console.error("회원가입 폼이 존재하지 않아 인증 필드를 추가할 수 없습니다.");
     return;
@@ -28,7 +28,7 @@ export const componentAuthElement = (element) => {
 
   // ✅ 필드 생성 및 추가
   authFields.forEach((field) => {
-    const fieldWrapper = componentAuthField(field);
+    const fieldWrapper = authFieldComponent(field);
 
     // ✅ 인증번호 입력 필드(`authentication`)는 기본적으로 숨김 상태이므로 표시하도록 수정
     if (field.name === "authentication") {

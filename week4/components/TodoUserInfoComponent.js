@@ -2,7 +2,7 @@ import {userInfo} from "../data";
 import {createElement} from "../utils";
 import {handleLogout} from "../event";
 
-export const componentUserInfo = () => {
+export const todoUserInfoComponent = () => {
   if (!userInfo) return;
 
   // ✅ 세션스토리지에서 로그인한 사용자 정보 가져오기

@@ -5,7 +5,7 @@ import {createElement} from "../utils";
  * @param {Object} field - 입력 필드 데이터
  * @returns {HTMLElement} - 생성된 필드 요소
  */
-export const componentInputField = (field) => {
+export const inputFieldComponent = (field) => {
   const inputWrapper = createElement("div", { class: "input_wrap" });
 
   const labelElement = createElement("label", {

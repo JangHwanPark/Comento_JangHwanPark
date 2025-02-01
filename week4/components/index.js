@@ -1,12 +1,12 @@
-export { componentForm } from "./componentForm.js";
-export { componentInputField } from "./componentInputField.js";
+export { formComponent } from "./FormComponent.js";
+export { inputFieldComponent } from "./InputFieldComponent.js";
 
 // 인증 관련ㄴ
-export { componentAuthElement } from "./componentAuthElement.js";
-export { componentAuthField } from "./componentAuthField.js";
-export { componentAuthCode } from "./componentAuthCode.js";
+export { authElementComponent } from "./AuthElementComponent.js";
+export { authFieldComponent } from "./AuthFieldComponent.js";
+export { authCodeComponent } from "./AuthCodeComponent.js";
 
 // 투두 리스트
-export { componentTodoItem } from "./componentTodoItem.js";
-export { componentUserInfo } from "./componentUserInfo.js";
+export { todoItemComponent } from "./TodoItemComponent.js";
+export { todoUserInfoComponent } from "./TodoUserInfoComponent.js";
 export { todoListComponent } from "./todoListComponent.js";

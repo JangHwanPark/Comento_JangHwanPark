@@ -1,4 +1,4 @@
-import { componentTodoItem } from "../components";
+import { todoItemComponent } from "../components";
 import {todoList} from "../data";
 import {getCurrentUser, setCurrentUser} from "../service";
 
@@ -7,7 +7,7 @@ export const handleAddTodo = (form) => {
   const value = inputElement?.value.trim();
   if (!value) return;
 
-  const todoItem = componentTodoItem(value);
+  const todoItem = todoItemComponent(value);
   todoList.appendChild(todoItem);
 
   const user = getCurrentUser();

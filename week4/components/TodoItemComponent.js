@@ -1,6 +1,6 @@
 import { createElement } from "../utils";
 
-export const componentTodoItem = (text) => {
+export const todoItemComponent = (text) => {
   const todoItems = [
     { tag: "span", class: "todo_title", text },
     { tag: "div", class: "btn_wrap", children: [

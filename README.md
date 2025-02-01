@@ -39,7 +39,7 @@
 ## Week 4
 ### 회원가입 및 로그인이 가능한 투두 리스트
 #### 공통 작업
-- 폼 생성 (`componentForm` 활용)
+- 폼 생성 (`formComponent` 활용)
 - 유효성 검사 및 에러 처리 (`validateField`, `showError`, `removeError` 등)
 - 로컬스토리지 활용 (회원 정보 저장 및 검증)
 
@@ -78,5 +78,5 @@
 ##### 🛠️ 주요 함수
 - handleAddTodo(form): 할 일 추가
 - handleDeleteTodo(e): 할 일 삭제
-- componentTodoItem(text): 할 일 목록 동적 생성
+- todoItemComponent(text): 할 일 목록 동적 생성
 - useAddEvent(parent, targetSelector, eventType, callback): 이벤트 위임

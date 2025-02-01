@@ -1,4 +1,4 @@
-import {componentAuthCode} from "../components";
+import {authCodeComponent} from "../components";
 
 /**
  * ✅ 인증번호 UI 업데이트 또는 생성
@@ -13,7 +13,7 @@ export const createAuthCode = (authWrapper, authCode) => {
   const phoneWrap = authWrapper.parentElement.querySelector(".phone_wrap");
 
   if (!authCodeWrap) {
-    authCodeWrap = componentAuthCode(authCode);
+    authCodeWrap = authCodeComponent(authCode);
 
     if (phoneWrap) {
       phoneWrap.parentElement.insertBefore(authCodeWrap, phoneWrap.nextElementSibling);

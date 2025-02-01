@@ -5,7 +5,7 @@ import {createElement} from "../utils";
  * @param {string} authCode - 생성된 인증번호
  * @returns {HTMLElement} - 인증번호 UI 요소
  */
-export const componentAuthCode = (authCode) => {
+export const authCodeComponent = (authCode) => {
   const authCodeWrap = createElement("div", {
     class: "input_wrap code_display" });
 

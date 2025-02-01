@@ -1,5 +1,5 @@
 import {createElement} from "../utils";
-import {componentInputField} from "../components";
+import {inputFieldComponent} from "../components";
 import {setupFormEvents} from "../service";
 
 /**
@@ -8,7 +8,7 @@ import {setupFormEvents} from "../service";
  * @param {Array} data - 입력 필드 데이터 배열
  * @param {String} buttonText - 버튼 텍스트 (기본값: "제출")
  */
-export const componentForm = (
+export const formComponent = (
     form,
     data,
     buttonText = "제출"
@@ -23,7 +23,7 @@ export const componentForm = (
 
   // ✅ 필드 생성 및 추가 (인증 필드는 제외)
   data.filter(({name}) => !["authentication", "phone"].includes(name))
-      .forEach((field) => fragment.appendChild(componentInputField(field)));
+      .forEach((field) => fragment.appendChild(inputFieldComponent(field)));
 
   // ✅ 버튼 추가
   const submitButton = createElement("button", {
