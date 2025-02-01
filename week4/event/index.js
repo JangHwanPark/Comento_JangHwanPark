@@ -14,4 +14,5 @@ export {
   handleSignUp,
   handleSignIn,
   handleAuthRequest,
+  handleLogout
 } from "./handleAuth.js";

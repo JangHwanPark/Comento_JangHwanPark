@@ -3,6 +3,7 @@ import {componentAuthElement, componentForm, componentUserInfo} from "./componen
 import {handleCompleteTodo, handleDeleteTodo, useAddEvent} from "./event";
 import {LOGIN_DATA, REGISTER_DATA, TODO_DATA} from "./data/form.js";
 import {todoList} from "./data";
+import {todoListComponent} from "./components";
 
 window.addEventListener("DOMContentLoaded", () => {
   // ✅ DOM 요소 가져오기
@@ -24,6 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // ✅ 할일 목록 폼 생성
   if (todoForm) {
     componentUserInfo();
+    todoListComponent();
     componentForm(todoForm, TODO_DATA, "추가");
     useAddEvent(todoList, ".delete_btn", "click", handleDeleteTodo);
     useAddEvent(todoList, ".complete_btn", "click", handleCompleteTodo);

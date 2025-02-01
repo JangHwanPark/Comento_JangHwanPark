@@ -1,5 +1,6 @@
 import {userInfo} from "../data";
 import {createElement} from "../utils";
+import {handleLogout} from "../event";
 
 export const componentUserInfo = () => {
   if (!userInfo) return;
@@ -56,4 +57,8 @@ export const componentUserInfo = () => {
   // 요소 삽입
   userTodoWrap.append(...todoElements)
   userInfo.append(userInfoWrap, userTodoWrap);
+
+  // 로그아웃 버튼 클릭 이벤트 바인딩
+  const logoutBtn = userInfoWrap.querySelector(".logout_btn");
+  if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
 }
