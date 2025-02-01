@@ -1,10 +1,12 @@
 // DOM이 완전히 로드된 후 실행
 import {authElementComponent, formComponent, todoUserInfoComponent} from "./components";
-import {handleCompleteTodo, handleDeleteTodo, useAddEvent} from "./event";
+import {handleCompleteTodo, handleDeleteTodo, handleFilterTodo, useAddEvent} from "./event";
 import {LOGIN_DATA, REGISTER_DATA, TODO_DATA} from "./data/form.js";
 import {todoList} from "./data";
 import {todoListComponent} from "./components";
+import {todoNav} from "./data";
 
+// 여기서 렌더링함
 window.addEventListener("DOMContentLoaded", () => {
   // ✅ DOM 요소 가져오기
   const registerForm = document.querySelector(".register");
@@ -25,9 +27,10 @@ window.addEventListener("DOMContentLoaded", () => {
   // ✅ 할일 목록 폼 생성
   if (todoForm) {
     todoUserInfoComponent();
-    todoListComponent();
+    todoListComponent("all");
     formComponent(todoForm, TODO_DATA, "추가");
     useAddEvent(todoList, ".delete_btn", "click", handleDeleteTodo);
     useAddEvent(todoList, ".complete_btn", "click", handleCompleteTodo);
+    useAddEvent(todoNav, ".nav_btn", "click", handleFilterTodo);
   }
 });

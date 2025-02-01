@@ -1,12 +1,12 @@
 export { useSubmit } from "./useSubmit.js";
-export { handleTest } from "./handleTest.js";
 export { useAddEvent } from "./useAddEvent.js";
 
 // 투두 리스트
 export {
   handleAddTodo,
   handleDeleteTodo,
-  handleCompleteTodo
+  handleCompleteTodo,
+  handleFilterTodo
 } from "./handleTodoList.js";
 
 // 인증 관련
