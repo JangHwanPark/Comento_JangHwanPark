@@ -7,6 +7,7 @@ export const ERROR_MESSAGES = {
   invalidCharacters: "허용되지 않는 문자가 포함되어 있습니다.",
   invalidEmail: "이메일 형식이 올바르지 않습니다.",
   invalidPhone: "휴대폰 번호 형식이 올바르지 않습니다. (예: 01012345678)",
+  authCodeEmpty: "인증번호를 입력해 주세요.",
   authCodeMissing: "인증번호가 생성되지 않았습니다.",
   authCodeMismatch: "입력한 인증번호가 올바르지 않습니다.",
   invalidPassword: "비밀번호는 최소 8자 이상이어야 합니다.",

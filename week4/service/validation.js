@@ -67,7 +67,7 @@ export const isAuthCodeValid = (userInput, generatedCode) => {
 }
 
 /**
- * ✅ 유효성 검사 공통 함수
+ * 유효성 검사 공통 함수
  * @param {HTMLElement} input - 입력 필드
  * @param {Function} validateFn - 유효성 검사 함수
  * @param {string} errorType - 오류 메시지 타입 (ERROR_MESSAGES 키 값)
@@ -96,7 +96,7 @@ export const validateField = (input, validateFn, errorType, ...params) => {
 };
 
 /**
- * ✅ 인증번호 검증 함수
+ * 인증번호 검증 함수
  * @param {HTMLElement} form - 인증을 수행할 폼 요소
  * @returns {boolean} - 인증 성공 여부
  */
@@ -109,7 +109,13 @@ export const isAuthVerification = (form) => {
     return false;
   }
 
-  return validateField(input, (val) => isAuthCodeValid(val, authValue), "authCodeMismatch");
+  if (isEmpty(input.value)) {
+    showError(input, ERROR_MESSAGES.authCodeEmpty);
+    return false;
+  }
+
+  return validateField(input, (val) =>
+      isAuthCodeValid(val, authValue), "authCodeMismatch");
 };
 
 /**

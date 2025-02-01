@@ -17,6 +17,8 @@ export const setupAuthEvents = (authContainer) => {
   if (phoneButton && phoneInput) {
     phoneButton.addEventListener("click", (e) => {
       e.preventDefault();
+      phoneInput.disabled = true;
+      phoneButton.textContent = "재전송";
       handleAuthRequest(authContainer);
     });
   }
@@ -24,6 +26,7 @@ export const setupAuthEvents = (authContainer) => {
   if (authButton && authInput) {
     authButton.addEventListener("click", (e) => {
       e.preventDefault();
+      console.log("인증 버튼 클릭")
       isAuthVerification(authContainer);
     });
   }
