@@ -39,12 +39,13 @@ export const handleDeleteTodo = (e) => {
   // ✅ 삭제 카운트 증가
   if (todoIndex !== -1) {
     user.todo.splice(todoIndex, 1);
+    user.todo[todoIndex].status = "deleted";
     user.defaultCnt[0].deleteCnt += 1;
   }
 
   // ✅ 데이터 업데이트 (UI 업데이트)
   setCurrentUser(user);
-  todoItem.remove();
+  //todoItem.remove();
   setUserTodoInfo();
 }
 

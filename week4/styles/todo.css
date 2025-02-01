@@ -51,6 +51,12 @@
     cursor: pointer;
 }
 
+.navigation .active button {
+    font-weight: 700;
+    background: #7ac142;
+    color: #ffffff;
+}
+
 /* 폼 */
 #todo {
     display: flex;
