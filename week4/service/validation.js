@@ -12,6 +12,17 @@ export const isEmpty = (value) => {
 };
 
 /**
+ * 아이디 중복 검사
+ * @param {string} value - 검사할 아이디 값
+ * @returns {boolean} - 중복이 없으면 true, 중복이면 false
+ */
+export const isValidUserId = (value) => {
+  if (!value) return false;
+  const existingUser = getUserData(value);
+  return existingUser === null;
+}
+
+/**
  * 길이 검사 (아이디 & 비밀번호 공통)
  * @param {string} value - 검사할 입력값
  * @param {number} min - 최소 길이
@@ -164,7 +175,7 @@ export const isValidSignInFields = (form) => {
 }
 
 /**
- * ✅ 회원가입 필드별 유효성 검사
+ * 회원가입 필드별 유효성 검사
  * @param {HTMLElement} form - 회원가입 폼
  * @returns {boolean} - 모든 필드가 유효하면 true, 아니면 false
  */
@@ -178,33 +189,54 @@ export const isValidSignUpFields = (form) => {
     if (!input) return;
 
     let fieldValid = true;
+    const value = input.value.trim(); // 입력값 저장
 
     // ✅ 공백 검사 (공백이면 이후 검사를 하지 않음)
-    if (!validateField(input, (val) => !isEmpty(val), "empty", label)) {
+    if (isEmpty(value)) {
+      validateField(input, () => false, "empty", label);
       isValid = false;
       fieldValid = false;
     }
 
     // ✅ 길이 검사 (공백이 아닐 때만 진행)
-    if (fieldValid && min && max && !validateField(input, (val) => isValidLength(val, min, max), "length", label, min, max)) {
+    const isInvalidLength = min && max && !isValidLength(value, min, max);
+    if (fieldValid && isInvalidLength) {
+      validateField(input, () => false, "length", label, min, max);
+      isValid = false;
+      fieldValid = false;
+    }
+
+    // ✅ 아이디 중복 검사
+    const isDuplicateUserId = name === "user_id" && !isValidUserId(value);
+    if (fieldValid && isDuplicateUserId) {
+      validateField(input, () => false, "duplicate", label);
       isValid = false;
       fieldValid = false;
     }
 
     // ✅ 특수문자 검사
-    if (fieldValid && checkSpecial && !validateField(input, (val) => !hasInvalidCharacters(val), "invalidCharacters", label)) {
+    const hasInvalidChars = checkSpecial && hasInvalidCharacters(value);
+    if (fieldValid && hasInvalidChars) {
+      validateField(input, () => false, "invalidCharacters", label);
       isValid = false;
       fieldValid = false;
     }
 
-    // ✅ 비밀번호 확인 검사 (일치 여부)
-    if (fieldValid && match && !validateField(input, (val) => val === form.querySelector(`input[name='${match}']`)?.value, "authCodeMismatch")) {
-      isValid = false;
-      fieldValid = false;
+    // ✅ 비밀번호 확인 검사
+    if (fieldValid && match) {
+      const confirmPassword = form.querySelector(`input[name='${match}']`)?.value.trim();
+      const isMismatch = value !== confirmPassword;
+      if (isMismatch) {
+        validateField(input, () => false, "passwordMismatch");
+        isValid = false;
+        fieldValid = false;
+      }
     }
 
     // ✅ 이메일 & 휴대폰 검사
-    if (fieldValid && validateFn && !validateField(input, validateFn, errorKey, label)) {
+    const isInvalidFormat = validateFn && !validateFn(value);
+    if (fieldValid && isInvalidFormat) {
+      validateField(input, () => false, errorKey, label);
       isValid = false;
       fieldValid = false;
     }

@@ -18,5 +18,5 @@ export {
   validateField,
   isAuthVerification,
   isValidSignUpFields,
-  isValidSignInFields,
+  isValidSignInFields
 } from "./validation.js";

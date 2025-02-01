@@ -11,13 +11,15 @@ export const ERROR_MESSAGES = {
   authCodeMissing: "인증번호가 생성되지 않았습니다.",
   authCodeMismatch: "입력한 인증번호가 올바르지 않습니다.",
   invalidPassword: "비밀번호는 최소 8자 이상이어야 합니다.",
+  passwordMismatch: "비밀번호가 일치하지 않습니다.",
+  duplicate: (label) => `이미 사용 중인 ${label}입니다.`,
 };
 
 /** 검증할 필드 목록 정의 */
 export const getFields = () => [
-  {name: "id", label: "아이디", min: 4, max: 16, checkSpecial: true},
+  {name: "user_id", label: "아이디", min: 4, max: 16, checkSpecial: true},
   {name: "password", label: "비밀번호", min: 8, max: 20},
-  {name: "passwordConfirm", label: "비밀번호 확인", match: "password"},
+  {name: "password_confirm", label: "비밀번호 확인", match: "password"},
   {name: "nickname", label: "닉네임", min: 2, max: 12},
   {name: "email", label: "이메일", validateFn: isValidEmail, errorKey: "invalidEmail"},
   {name: "phone", label: "휴대폰 번호", validateFn: isValidPhone, errorKey: "invalidPhone"},
