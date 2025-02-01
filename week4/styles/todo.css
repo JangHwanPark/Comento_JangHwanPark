@@ -45,14 +45,28 @@
     margin: 0;
 }
 
-.delete_btn {
+.btn_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.delete_btn, .complete_btn {
     width: 50px;
     height: 30px;
-    background: #e74c3c;
-    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.delete_btn {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.complete_btn {
+    margin: 0;
 }
 
 /* 투두 리스트 */

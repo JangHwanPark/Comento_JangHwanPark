@@ -34,3 +34,20 @@ export const getUserData = (id) => {
   const user = users.find((user) => user.user_id === id);
   return user || null;
 };
+
+/**
+ * ✅ 세션스토리지에서 현재 로그인한 사용자 데이터 가져오기
+ * @returns {Object|null} - 사용자 데이터 반환 (없으면 null)
+ */
+export const getCurrentUser = () => {
+  const userData = sessionStorage.getItem("user");
+  return userData ? JSON.parse(userData) : null;
+};
+
+/**
+ * ✅ 세션스토리지에 현재 로그인한 사용자 데이터 업데이트
+ * @param {Object} updatedUser - 업데이트할 사용자 객체
+ */
+export const setCurrentUser = (updatedUser) => {
+  sessionStorage.setItem("user", JSON.stringify(updatedUser));
+};

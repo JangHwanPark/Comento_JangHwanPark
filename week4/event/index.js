@@ -5,7 +5,8 @@ export { useAddEvent } from "./useAddEvent.js";
 // 투두 리스트
 export {
   handleAddTodo,
-  handleDeleteTodo
+  handleDeleteTodo,
+  handleCompleteTodo
 } from "./handleTodoList.js";
 
 // 인증 관련
