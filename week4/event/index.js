@@ -7,5 +7,4 @@ export {
   handleSignUp,
   handleSignIn,
   handleAuthRequest,
-  handleAuthVerification
 } from "./handleAuth.js";

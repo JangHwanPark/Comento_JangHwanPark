@@ -1,6 +1,6 @@
 export {createAuthCode} from "./createAuthCode.js";
 export {generateAuthCode} from "./generateAuthCode.js";
-export {saveUserInfo} from "./saveUserInfo.js";
+export {saveUserInfo, getUserData} from "./userInfoService.js";
 export {setupFormEvents} from "./setupFormEvents.js";
 export {setupAuthEvents} from "./setupAuthEvents.js";
 export {
@@ -11,5 +11,7 @@ export {
   isValidPhone,
   isAuthCodeValid,
   validateField,
-  validateSignUpFields
+  isAuthVerification,
+  isValidSignUpFields,
+  isValidSignInFields,
 } from "./validation.js";

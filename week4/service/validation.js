@@ -1,5 +1,6 @@
 import {ERROR_MESSAGES, getFields} from "../data";
 import {removeError, showError} from "../utils";
+import {getUserData} from "../service";
 
 /**
  * 공백 검사 (빈 문자열 또는 공백만 포함된 경우)
@@ -95,16 +96,76 @@ export const validateField = (input, validateFn, errorType, ...params) => {
 };
 
 /**
+ * ✅ 인증번호 검증 함수
+ * @param {HTMLElement} form - 인증을 수행할 폼 요소
+ * @returns {boolean} - 인증 성공 여부
+ */
+export const isAuthVerification = (form) => {
+  const input = form.querySelector("input[name='authentication']");
+  const authValue = document.querySelector(".code")?.textContent;
+
+  if (!input || !authValue) {
+    showError(input, ERROR_MESSAGES.authCodeMissing);
+    return false;
+  }
+
+  return validateField(input, (val) => isAuthCodeValid(val, authValue), "authCodeMismatch");
+};
+
+/**
+ * ✅ 로그인 유효성 검사 (아이디 비밀번호)
+ * @param {HTMLElement} form - 회원가입 폼
+ * @returns {boolean} - 모든 필드가 유효하면 true, 아니면 false
+ */
+export const isValidSignInFields = (form) => {
+  if (!form) return false;
+  let isValid = true;
+
+  const idInput = form.querySelector("input[name='user_id']");
+  const passwordInput = form.querySelector("input[name='password']");
+
+  // ✅ 공백 검사
+  if (isEmpty(idInput.value)) {
+    showError(idInput, ERROR_MESSAGES.empty("아이디"));
+    isValid = false;
+  }
+
+  if (isEmpty(passwordInput.value)) {
+    showError(passwordInput, ERROR_MESSAGES.empty("비밀번호"));
+    isValid = false;
+  }
+
+  // 기본 검사 실패 시 중단
+  if (!isValid) return false;
+
+  // ✅ 로컬스토리지에서 사용자 데이터 가져오기
+  const userData = getUserData(idInput.value);
+
+  // ✅ 아이디 확인 (로컬스토리지의 아이디와 비교)
+  if (!userData || userData.user_id !== idInput.value) {
+    showError(idInput, "존재하지 않는 아이디입니다.");
+    return false;
+  }
+
+  if (userData.password !== passwordInput.value) {
+    showError(passwordInput, "비밀번호가 일치하지 않습니다.");
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * ✅ 회원가입 필드별 유효성 검사
  * @param {HTMLElement} form - 회원가입 폼
  * @returns {boolean} - 모든 필드가 유효하면 true, 아니면 false
  */
-export const validateSignUpFields = (form) => {
+export const isValidSignUpFields = (form) => {
   let isValid = true;
 
   // ✅ 필드별 검증
   const fields = getFields();
-  fields.forEach(({ name, label, min, max, checkSpecial, match, validateFn, errorKey }) => {
+  fields.forEach(({name, label, min, max, checkSpecial, match, validateFn, errorKey}) => {
     const input = form.querySelector(`input[name='${name}']`);
     if (!input) return;
 

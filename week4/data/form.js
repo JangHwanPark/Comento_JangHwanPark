@@ -11,7 +11,7 @@
 export const LOGIN_DATA = [
   {
     label: "아이디",
-    name: "id",
+    name: "user_id",
     type: "text",
     placeholder: "아이디를 입력하세요",
     required: true,
@@ -19,7 +19,7 @@ export const LOGIN_DATA = [
   },
   {
     label: "비밀번호",
-    name: "pwd",
+    name: "password",
     type: "password",
     placeholder: "비밀번호를 입력하세요",
     required: true,
@@ -32,7 +32,7 @@ export const LOGIN_DATA = [
 export const REGISTER_DATA = [
   {
     label: "아이디",
-    name: "id",
+    name: "user_id",
     type: "text",
     placeholder: "아이디를 입력하세요",
     required: true,
@@ -42,7 +42,7 @@ export const REGISTER_DATA = [
   },
   {
     label: "비밀번호",
-    name: "pwd",
+    name: "password",
     type: "password",
     placeholder: "비밀번호를 입력하세요",
     required: true,
@@ -52,7 +52,7 @@ export const REGISTER_DATA = [
   },
   {
     label: "비밀번호 확인",
-    name: "pwd_confirm",
+    name: "password_confirm",
     type: "password",
     placeholder: "비밀번호를 다시 입력하세요",
     required: true,

@@ -1,4 +1,5 @@
-import { handleAuthRequest, handleAuthVerification } from "../event";
+import { handleAuthRequest } from "../event";
+import {isAuthVerification} from "../service";
 
 /**
  * ✅ 인증 필드에 이벤트 핸들러 등록
@@ -23,7 +24,7 @@ export const setupAuthEvents = (authContainer) => {
   if (authButton && authInput) {
     authButton.addEventListener("click", (e) => {
       e.preventDefault();
-      handleAuthVerification(authContainer);
+      isAuthVerification(authContainer);
     });
   }
 };

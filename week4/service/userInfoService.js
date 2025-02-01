@@ -17,5 +17,13 @@ export const saveUserInfo = (form) => {
 
   const localSetUsers = JSON.stringify(users);
   localStorage.setItem("users", localSetUsers);
-  console.log("데이터 저장함 : ", formData);
 }
+
+export const getUserData = (id) => {
+  const data = localStorage.getItem("users"); // 로컬스토리지에서 데이터 가져오기
+  if (!data) return null; // 데이터가 없으면 null 반환
+
+  const users = JSON.parse(data);
+  const user = users.find((user) => user.user_id === id);
+  return user || null;
+};
