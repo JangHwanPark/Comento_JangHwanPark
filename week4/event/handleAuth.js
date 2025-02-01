@@ -32,12 +32,8 @@ export const handleSignUp = (form) => {
  * @param {HTMLElement} form - 사용자가 입력한 폼 데이터
  */
 export const handleSignIn = (form) => {
-  if (isValidSignInFields(form)) {
-    console.log("로그인 성공")
-    //window.location.replace("./pages/todo/index.html");
-  } else {
-    console.log("로그인 실패")
-  }
+  if (!isValidSignInFields(form)) return;
+  window.location.replace("./pages/todo/index.html");
 };
 
 /**
