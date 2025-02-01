@@ -4,10 +4,24 @@
 }
 
 /* 에러 메세지 */
+.error {
+    width: 100%;
+    margin-top: 1rem;
+    text-align: left;
+}
+
 .error_message {
-    color: red;
+    color: #E7263B;
     font-size: 12px;
     margin-top: 4px;
+}
+
+.input_wrap .input_error {
+    border: 1px solid #E7263B;
+}
+
+.input_wrap .input_error:focus {
+    border: 1px solid #E7263B;
 }
 
 /* 인증 번호 */
@@ -20,3 +34,4 @@
 .auth_wrapper.request {
     display: block;
 }
+

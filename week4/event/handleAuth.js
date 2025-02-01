@@ -1,29 +1,24 @@
-import {createAuthCode, generateAuthCode, isAuthCodeValid, isEmpty, isValidPhone, saveUserInfo} from "../service";
+import {
+  createAuthCode,
+  generateAuthCode,
+  isAuthCodeValid,
+  saveUserInfo,
+  validateField,
+  validateSignUpFields
+} from "../service";
 import {showError} from "../utils";
-
-/**
- * ✅ 유효성 검사 공통 함수
- * @param {HTMLElement} input - 입력 필드
- * @param {Function} validateFn - 유효성 검사 함수
- * @param {string} errorMessage - 오류 메시지
- * @returns {boolean} - 유효하면 true, 아니면 false
- */
-const validateField = (input, validateFn, errorMessage) => {
-  const wrapper = input.closest(".input_wrap");
-  if (!input || !wrapper) return false;
-
-  if (isEmpty(input.value) || !validateFn(input.value)) {
-    showError(wrapper, errorMessage);
-    return false;
-  }
-  return true;
-};
 
 /**
  * ✅ 회원가입 이벤트 핸들러
  * @param {HTMLElement} form - 사용자가 입력한 폼 데이터
  */
 export const handleSignUp = (form) => {
+  // 🚨 필수 필드 유효성 검사
+  if (!validateSignUpFields(form)) {
+    console.warn("🚨 회원가입 입력값이 올바르지 않아 중단됨.");
+    return;
+  }
+
   // 🚨 인증 실패 시 회원가입 중단
   const isAuthVerified = handleAuthVerification(form);
   if (!isAuthVerified) {
@@ -51,16 +46,6 @@ export const handleAuthRequest = (form) => {
   const authInputWrap = input.closest(".input_wrap");
   const authInputField = form.querySelector(".input_wrap.screen_out");
   if (!authInputWrap) return;
-
-  // 유효성 검사
-  if (isEmpty(input.value)) {
-    showError(authInputWrap, "휴대폰 번호는 필수 입력 항목입니다.");
-    return;
-  }
-  if (!isValidPhone(input.value)) {
-    showError(authInputWrap, "휴대폰 번호 형식이 올바르지 않습니다. (예: 01012345678)");
-    return;
-  }
 
   // ✅ 인증번호 생성 UI 업데이트
   const authCode = generateAuthCode();

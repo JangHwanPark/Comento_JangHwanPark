@@ -1,3 +1,6 @@
+import {ERROR_MESSAGES, getFields} from "../data";
+import {removeError, showError} from "../utils";
+
 /**
  * 공백 검사 (빈 문자열 또는 공백만 포함된 경우)
  * @param {string} value - 검사할 입력값
@@ -61,3 +64,85 @@ export const isAuthCodeValid = (userInput, generatedCode) => {
   }
   return userInput.trim() === generatedCode.trim();
 }
+
+/**
+ * ✅ 유효성 검사 공통 함수
+ * @param {HTMLElement} input - 입력 필드
+ * @param {Function} validateFn - 유효성 검사 함수
+ * @param {string} errorType - 오류 메시지 타입 (ERROR_MESSAGES 키 값)
+ * @param {Array} params - 오류 메시지에 전달할 값 (예: min, max 등)
+ * @returns {boolean} - 유효하면 true, 아니면 false
+ */
+export const validateField = (input, validateFn, errorType, ...params) => {
+  if (!input) return false;
+
+  const labelElement = input.closest(".input_wrap")?.querySelector("label");
+  const label = labelElement ? labelElement.textContent.trim() : null;
+
+  // ✅ 유효성 검사 실행
+  if (isEmpty(input.value) || !validateFn(input.value)) {
+    const errorMessage = typeof ERROR_MESSAGES[errorType] === "function"
+        ? ERROR_MESSAGES[errorType](label, ...params)
+        : ERROR_MESSAGES[errorType];
+
+    showError(input, errorMessage);
+    return false;
+  }
+
+  // ✅ 필드가 유효한 경우만 에러 제거 실행
+  removeError(input);
+  return true;
+};
+
+/**
+ * ✅ 회원가입 필드별 유효성 검사
+ * @param {HTMLElement} form - 회원가입 폼
+ * @returns {boolean} - 모든 필드가 유효하면 true, 아니면 false
+ */
+export const validateSignUpFields = (form) => {
+  let isValid = true;
+
+  // ✅ 필드별 검증
+  const fields = getFields();
+  fields.forEach(({ name, label, min, max, checkSpecial, match, validateFn, errorKey }) => {
+    const input = form.querySelector(`input[name='${name}']`);
+    if (!input) return;
+
+    let fieldValid = true;
+
+    // ✅ 공백 검사 (공백이면 이후 검사를 하지 않음)
+    if (!validateField(input, (val) => !isEmpty(val), "empty", label)) {
+      isValid = false;
+      fieldValid = false;
+    }
+
+    // ✅ 길이 검사 (공백이 아닐 때만 진행)
+    if (fieldValid && min && max && !validateField(input, (val) => isValidLength(val, min, max), "length", label, min, max)) {
+      isValid = false;
+      fieldValid = false;
+    }
+
+    // ✅ 특수문자 검사
+    if (fieldValid && checkSpecial && !validateField(input, (val) => !hasInvalidCharacters(val), "invalidCharacters", label)) {
+      isValid = false;
+      fieldValid = false;
+    }
+
+    // ✅ 비밀번호 확인 검사 (일치 여부)
+    if (fieldValid && match && !validateField(input, (val) => val === form.querySelector(`input[name='${match}']`)?.value, "authCodeMismatch")) {
+      isValid = false;
+      fieldValid = false;
+    }
+
+    // ✅ 이메일 & 휴대폰 검사
+    if (fieldValid && validateFn && !validateField(input, validateFn, errorKey, label)) {
+      isValid = false;
+      fieldValid = false;
+    }
+
+    // ✅ 해당 필드가 유효한 경우만 removeError 실행
+    if (fieldValid) removeError(input);
+  });
+
+  return isValid;
+};

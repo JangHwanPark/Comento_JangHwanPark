@@ -9,5 +9,7 @@ export {
   hasInvalidCharacters,
   isValidEmail,
   isValidPhone,
-  isAuthCodeValid
+  isAuthCodeValid,
+  validateField,
+  validateSignUpFields
 } from "./validation.js";

@@ -1,4 +1,4 @@
-import { useSubmit, handleSignUp, handleSignIn, handleAuthRequest, handleAuthVerification } from "../event";
+import { useSubmit, handleSignUp, handleSignIn } from "../event";
 
 /**
  * ✅ 회원가입 및 로그인 폼 설정
