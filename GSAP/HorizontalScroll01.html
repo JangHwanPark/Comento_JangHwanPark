@@ -44,8 +44,8 @@
       .panel:nth-child(3) { background: #3357ff; }
       .panel:nth-child(4) { background: #f4d03f; }
   </style>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -59,25 +59,28 @@
 </div>
 
 <script>
-  // GSAP ScrollTrigger 활성화
-  gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener("DOMContentLoaded", (event) => {
+    // GSAP ScrollTrigger 활성화
+    gsap.registerPlugin(ScrollTrigger);
 
-  // scroll-container 선택
-  let scrollContainer = document.querySelector(".scroll-container");
+    // scroll-container 선택
+    let scrollContainer = document.querySelector(".scroll-container");
 
-  // 가로 스크롤 적용
-  gsap.to(scrollContainer, {
-    x: () => -(scrollContainer.scrollWidth - window.innerWidth), // 전체 너비에서 화면 너비만큼 빼서 왼쪽으로 이동
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".wrapper",
-      start: "top top",
-      end: () => `+=${scrollContainer.scrollWidth - window.innerWidth}`,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1
-    }
+    // 가로 스크롤 적용
+    gsap.to(scrollContainer, {
+      x: () => -(scrollContainer.scrollWidth - window.innerWidth), // 전체 너비에서 화면 너비만큼 빼서 왼쪽으로 이동
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top top",
+        end: () => `+=${scrollContainer.scrollWidth - window.innerWidth}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1
+      }
+    });
   });
+
 </script>
 
 </body>
