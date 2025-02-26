@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포트폴리오 - 홍길동</title>
+  <style>
+      /* 전체 스타일 초기화 */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Noto Sans KR', sans-serif;
+      }
+
+      html {
+          scroll-behavior: smooth;
+      }
+
+      body {
+          line-height: 1.6;
+          color: #333;
+          background-color: #f9f9f9;
+      }
+
+      /* 헤더 스타일 */
+      header {
+          background-color: #fff;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          position: fixed;
+          width: 100%;
+          z-index: 100;
+          padding: 1rem 2rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .logo {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #3498db;
+      }
+
+      nav ul {
+          display: flex;
+          list-style: none;
+      }
+
+      nav ul li {
+          margin-left: 2rem;
+      }
+
+      nav ul li a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+          color: #3498db;
+      }
+
+      /* 메인 영역 */
+      main {
+          padding-top: 80px;
+      }
+
+      section {
+          padding: 5rem 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+      }
+
+      h2 {
+          font-size: 2.5rem;
+          margin-bottom: 2rem;
+          color: #2c3e50;
+          text-align: center;
+      }
+
+      /* 히어로 섹션 */
+      #hero {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/api/placeholder/1200/800') center/cover;
+      }
+
+      #hero h1 {
+          font-size: 3.5rem;
+          margin-bottom: 1rem;
+          color: #2c3e50;
+      }
+
+      #hero p {
+          font-size: 1.5rem;
+          margin-bottom: 2rem;
+          color: #7f8c8d;
+          max-width: 700px;
+      }
+
+      .btn {
+          display: inline-block;
+          background-color: #3498db;
+          color: white;
+          padding: 0.8rem 2rem;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 500;
+          transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+          background-color: #2980b9;
+      }
+
+      /* 소개 섹션 */
+      #about {
+          background-color: #fff;
+      }
+
+      .about-content {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 3rem;
+          align-items: center;
+      }
+
+      .profile-img {
+          width: 100%;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-text h3 {
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+          color: #3498db;
+      }
+
+      /* 스킬 섹션 */
+      #skills {
+          background-color: #f5f7fa;
+      }
+
+      .skills-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 2rem;
+      }
+
+      .skill-card {
+          background-color: white;
+          padding: 2rem;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          transition: transform 0.3s;
+      }
+
+      .skill-card:hover {
+          transform: translateY(-5px);
+      }
+
+      .skill-card h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: #3498db;
+      }
+
+      .skill-bar {
+          height: 10px;
+          background-color: #eee;
+          border-radius: 5px;
+          margin-top: 1rem;
+          position: relative;
+      }
+
+      .skill-progress {
+          height: 100%;
+          border-radius: 5px;
+          background-color: #3498db;
+      }
+
+      /* 프로젝트 섹션 */
+      #projects {
+          background-color: #fff;
+      }
+
+      .projects-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+          gap: 2rem;
+      }
+
+      .project-card {
+          background-color: #f9f9f9;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          transition: transform 0.3s;
+      }
+
+      .project-card:hover {
+          transform: translateY(-5px);
+      }
+
+      .project-img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+      }
+
+      .project-details {
+          padding: 1.5rem;
+      }
+
+      .project-details h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: #3498db;
+      }
+
+      .tag {
+          display: inline-block;
+          background-color: #e0f0fd;
+          color: #3498db;
+          padding: 0.3rem 0.8rem;
+          border-radius: 50px;
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
+      }
+
+      /* 연락처 섹션 */
+      #contact {
+          background-color: #f5f7fa;
+      }
+
+      .contact-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+      }
+
+      .contact-info h3 {
+          font-size: 1.8rem;
+          margin-bottom: 1.5rem;
+          color: #3498db;
+      }
+
+      .contact-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1.5rem;
+      }
+
+      .contact-item i {
+          font-size: 1.5rem;
+          color: #3498db;
+          margin-right: 1rem;
+      }
+
+      .contact-form {
+          padding: 2rem;
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-group {
+          margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+          width: 100%;
+          padding: 0.8rem;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 1rem;
+      }
+
+      .form-group textarea {
+          resize: none;
+          height: 150px;
+      }
+
+      /* 푸터 영역 */
+      footer {
+          background-color: #2c3e50;
+          color: white;
+          text-align: center;
+          padding: 2rem;
+      }
+
+      .social-links {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+      }
+
+      .social-links a {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          background-color: white;
+          border-radius: 50%;
+          margin: 0 0.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #2c3e50;
+          text-decoration: none;
+          transition: background-color 0.3s;
+      }
+
+      .social-links a:hover {
+          background-color: #3498db;
+          color: white;
+      }
+
+      /* 반응형 설계 */
+      @media (max-width: 992px) {
+          .about-content,
+          .contact-content {
+              grid-template-columns: 1fr;
+          }
+
+          .about-content img {
+              max-width: 500px;
+              margin: 0 auto;
+          }
+      }
+
+      @media (max-width: 768px) {
+          h2 {
+              font-size: 2rem;
+          }
+
+          #hero h1 {
+              font-size: 2.5rem;
+          }
+
+          #hero p {
+              font-size: 1.2rem;
+          }
+
+          .hamburger {
+              display: block;
+              cursor: pointer;
+          }
+
+          nav ul {
+              position: absolute;
+              top: 70px;
+              left: 0;
+              background-color: white;
+              width: 100%;
+              flex-direction: column;
+              align-items: center;
+              padding: 1rem 0;
+              box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+              clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+              transition: clip-path 0.4s;
+          }
+
+          nav ul.active {
+              clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+
+          nav ul li {
+              margin: 1rem 0;
+          }
+      }
+
+      @media (max-width: 576px) {
+          section {
+              padding: 3rem 1rem;
+          }
+
+          .projects-grid {
+              grid-template-columns: 1fr;
+          }
+      }
+  </style>
+</head>
+<body>
+<!-- 헤더 영역 -->
+<header>
+  <div class="logo">포트폴리오</div>
+  <nav>
+    <ul>
+      <li><a href="#hero">홈</a></li>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#skills">기술</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#contact">연락처</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 메인 콘텐츠 -->
+<main>
+  <!-- 히어로 섹션 -->
+  <section id="hero">
+    <h1>홍길동입니다</h1>
+    <p>웹 개발자 | UI/UX 디자이너 | 프리랜서</p>
+    <a href="#projects" class="btn">프로젝트 보기</a>
+  </section>
+
+  <!-- 소개 섹션 -->
+  <section id="about">
+    <h2>나의 소개</h2>
+    <div class="about-content">
+      <img src="/api/placeholder/400/500" alt="프로필 이미지" class="profile-img">
+      <div class="about-text">
+        <h3>안녕하세요, 저는 웹 개발자 홍길동입니다.</h3>
+        <p>프론트엔드와 백엔드 개발 모두에 경험이 있으며, 사용자 중심의 디자인과 최적화된 개발을 목표로 합니다. 2018년부터 웹 개발을 시작하여 다양한 프로젝트를 경험했습니다.</p>
+        <p>저는 새로운 기술을 배우는 것을 좋아하며, 문제 해결을 위한 창의적인 접근 방식을 항상 고민합니다. 팀 프로젝트에서는 소통과 협업을 중요시하며, 개인 프로젝트에서는 완성도 높은 결과물을 위해 노력합니다.</p>
+        <p>취미로는 여행, 사진 촬영, 독서를 즐기며 이러한 경험들이 제 디자인과 개발 능력에 영감을 줍니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 스킬 섹션 -->
+  <section id="skills">
+    <h2>기술 스택</h2>
+    <div class="skills-content">
+      <div class="skill-card">
+        <h3>프론트엔드</h3>
+        <p>HTML, CSS, JavaScript를 기반으로 사용자 친화적인 인터페이스를 구현합니다.</p>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%;"></div>
+        </div>
+        <p>React, Vue.js와 같은 프레임워크를 활용한 SPA 개발 경험이 있습니다.</p>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%;"></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>백엔드</h3>
+        <p>Node.js, Express를 이용한 서버 구축 및 API 개발이 가능합니다.</p>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 80%;"></div>
+        </div>
+        <p>MongoDB, MySQL 등의 데이터베이스 설계 및 관리 경험이 있습니다.</p>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 75%;"></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>디자인</h3>
+        <p>Figma, Adobe XD를 활용한 UI/UX 디자인 경험이 있습니다.</p>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%;"></div>
+        </div>
+        <p>반응형 웹 디자인과 접근성을 고려한 디자인을 구현합니다.</p>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 프로젝트 섹션 -->
+  <section id="projects">
+    <h2>프로젝트</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="/api/placeholder/400/300" alt="프로젝트 이미지" class="project-img">
+        <div class="project-details">
+          <h3>온라인 쇼핑몰</h3>
+          <p>React와 Node.js를 활용한 풀스택 이커머스 웹사이트입니다. 사용자 인증, 결제 시스템, 상품 관리 기능을 구현했습니다.</p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Express</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="/api/placeholder/400/300" alt="프로젝트 이미지" class="project-img">
+        <div class="project-details">
+          <h3>여행 블로그</h3>
+          <p>Vue.js와 Firebase를 활용한 여행 경험 공유 플랫폼입니다. 지도 API를 활용한 위치 기반 서비스를 제공합니다.</p>
+          <div class="project-tags">
+            <span class="tag">Vue.js</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">Google Maps API</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="/api/placeholder/400/300" alt="프로젝트 이미지" class="project-img">
+        <div class="project-details">
+          <h3>할 일 관리 앱</h3>
+          <p>React Native로 개발한 크로스 플랫폼 모바일 앱입니다. 사용자 맞춤형 알림 기능과 캘린더 통합 기능을 구현했습니다.</p>
+          <div class="project-tags">
+            <span class="tag">React Native</span>
+            <span class="tag">Redux</span>
+            <span class="tag">Expo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 연락처 섹션 -->
+  <section id="contact">
+    <h2>연락처</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>함께 일해보세요</h3>
+        <p>새로운 프로젝트나 협업 제안을 환영합니다. 언제든지 연락 주세요!</p>
+        <div class="contact-item">
+          <i>📧</i>
+          <p>email@example.com</p>
+        </div>
+        <div class="contact-item">
+          <i>📱</i>
+          <p>010-1234-5678</p>
+        </div>
+        <div class="contact-item">
+          <i>📍</i>
+          <p>서울특별시 강남구</p>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">제목</label>
+            <input type="text" id="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">메시지</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="btn">메시지 보내기</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 푸터 영역 -->
+<footer>
+  <div class="social-links">
+    <a href="#"><i>G</i></a>
+    <a href="#"><i>L</i></a>
+    <a href="#"><i>T</i></a>
+    <a href="#"><i>I</i></a>
+  </div>
+  <p>&copy; 2025 홍길동의 포트폴리오. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // 스크롤 시 헤더 스타일 변경
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+      header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    } else {
+      header.style.backgroundColor = '#fff';
+      header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    }
+  });
+</script>
+</body>
+</html>
